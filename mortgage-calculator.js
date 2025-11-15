@@ -1,18 +1,8 @@
+// Mortgage Calculator JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('mortgageForm');
-    const buyersSelect = document.getElementById('buyers');
-    const income2Group = document.getElementById('income2Group');
     const resultsSection = document.getElementById('results');
-
-    // Show/hide second income field
-    buyersSelect.addEventListener('change', function() {
-        if (this.value === '2') {
-            income2Group.style.display = 'block';
-        } else {
-            income2Group.style.display = 'none';
-            document.getElementById('income2').value = '';
-        }
-    });
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -20,70 +10,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function calculateMortgage() {
-        // Get form values
-        const income1 = parseFloat(document.getElementById('income1').value) || 0;
-        const income2 = parseFloat(document.getElementById('income2').value) || 0;
-        const deposit = parseFloat(document.getElementById('deposit').value) || 0;
-        const term = parseInt(document.getElementById('term').value) || 25;
-        const interestRate = parseFloat(document.getElementById('interestRate').value) || 4.5;
+        // Get input values
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const termYears = parseInt(document.getElementById('term').value);
+        const annualRate = parseFloat(document.getElementById('interestRate').value);
 
-        // Calculate total income
-        const totalIncome = income1 + income2;
+        // Calculate monthly payment using standard mortgage formula
+        const monthlyRate = annualRate / 100 / 12;
+        const numberOfPayments = termYears * 12;
 
-        // Calculate maximum loan (typically 4.5x income)
-        const maxLoan = Math.round(totalIncome * 4.5);
-
-        // Calculate property value (loan + deposit)
-        const propertyValue = maxLoan + deposit;
-
-        // Calculate LTV ratio
-        const ltvRatio = propertyValue > 0 ? Math.round((maxLoan / propertyValue) * 100) : 0;
-
-        // Calculate monthly payment
-        const monthlyRate = interestRate / 100 / 12;
-        const numPayments = term * 12;
-        let monthlyPayment = 0;
-
-        if (interestRate > 0) {
-            monthlyPayment = maxLoan * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                           (Math.pow(1 + monthlyRate, numPayments) - 1);
+        let monthlyPayment;
+        if (monthlyRate === 0) {
+            // If interest rate is 0%, simple division
+            monthlyPayment = loanAmount / numberOfPayments;
         } else {
-            monthlyPayment = maxLoan / numPayments;
+            // Standard mortgage payment formula: M = P[r(1+r)^n]/[(1+r)^n-1]
+            monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+                           (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
         }
+
+        const totalRepayment = monthlyPayment * numberOfPayments;
+        const totalInterest = totalRepayment - loanAmount;
 
         // Display results
-        document.getElementById('maxLoan').textContent = '£' + maxLoan.toLocaleString();
-        document.getElementById('totalIncome').textContent = '£' + totalIncome.toLocaleString();
-        document.getElementById('monthlyPayment').textContent = '£' + Math.round(monthlyPayment).toLocaleString();
-        document.getElementById('displayRate').textContent = interestRate + '%';
-        document.getElementById('displayTerm').textContent = term + ' years';
-        document.getElementById('ltvRatio').textContent = ltvRatio + '%';
-        document.getElementById('loanForLTV').textContent = '£' + maxLoan.toLocaleString();
-        document.getElementById('depositForLTV').textContent = '£' + deposit.toLocaleString();
+        document.getElementById('monthlyPayment').textContent = '£' + monthlyPayment.toLocaleString('en-GB', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
-        // LTV advice
-        const ltvAdvice = document.getElementById('ltvAdvice');
-        if (ltvRatio <= 75) {
-            ltvAdvice.textContent = 'Your LTV is relatively low. You are likely to be offered more generous interest rates.';
-            ltvAdvice.style.color = 'var(--success-color)';
-        } else if (ltvRatio <= 85) {
-            ltvAdvice.textContent = 'Your LTV is moderate. You should have access to competitive mortgage deals.';
-            ltvAdvice.style.color = 'var(--primary-color)';
-        } else if (ltvRatio <= 90) {
-            ltvAdvice.textContent = 'Your LTV is relatively high. Consider saving a larger deposit for better rates.';
-            ltvAdvice.style.color = 'var(--text-medium)';
-        } else {
-            ltvAdvice.textContent = 'Your LTV is very high. You may face limited options and higher interest rates.';
-            ltvAdvice.style.color = 'var(--danger-color)';
-        }
+        document.getElementById('displayLoan').textContent = '£' + loanAmount.toLocaleString('en-GB');
+        document.getElementById('displayTerm').textContent = termYears + ' years (' + numberOfPayments + ' months)';
+        document.getElementById('displayRate').textContent = annualRate + '%';
+        
+        document.getElementById('totalRepayment').textContent = '£' + totalRepayment.toLocaleString('en-GB', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        document.getElementById('totalInterest').textContent = '£' + totalInterest.toLocaleString('en-GB', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
         // Show results
         resultsSection.style.display = 'block';
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-
-    function formatCurrency(value) {
-        return '£' + Math.round(value).toLocaleString();
-    }
 });
-

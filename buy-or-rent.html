@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Buy or Rent Calculator - Compare the costs of buying vs renting to make the right decision.">
+    <meta name="description" content="Buy or Rent Calculator - Compare the costs of buying vs renting with different property growth scenarios.">
     
     <title>Buy or Rent Calculator | QuidsIn</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -27,9 +28,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+                        <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+                        <li><a href="property-value-projector.html">Property Value Projector</a></li>
                         <li><a href="mortgage-overpayment.html">Mortgage Overpayment Calculator</a></li>
                         <li><a href="buy-or-rent.html">Buy or Rent?</a></li>
-                        <li><a href="mortgage-comparison.html">Mortgage Comparison</a></li>
                     </ul>
                 </li>
                 
@@ -58,54 +60,73 @@
 
     <div class="container">
         <header>
-            <h1>Buy or Rent?</h1>
-            <p class="subtitle">Compare the costs of buying vs renting over time</p>
+            <h1><i class="fas fa-balance-scale"></i> Buy or Rent?</h1>
+            <p class="subtitle">Compare the costs of buying vs renting with different property growth scenarios</p>
         </header>
 
         <div class="calculator-card">
             <form id="buyRentForm">
                 <div class="form-section">
                     <div class="section-header">
+                        <i class="fas fa-home section-icon"></i>
                         <h2>Property Details</h2>
                     </div>
                     
                     <div class="input-group">
-                        <label for="propertyPrice">Property price</label>
+                        <label for="propertyPrice"><i class="fas fa-pound-sign"></i> Property Price</label>
                         <div class="input-with-symbol">
                             <span class="currency-symbol">£</span>
-                            <input type="number" id="propertyPrice" name="propertyPrice" placeholder="e.g., 300000" min="0" step="10000" required>
+                            <input type="number" id="propertyPrice" name="propertyPrice" placeholder="e.g., 300000" min="10000" step="10000" value="300000" required>
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label for="monthlyRent">Monthly rent</label>
+                        <label for="monthlyRent"><i class="fas fa-receipt"></i> Monthly Rent</label>
                         <div class="input-with-symbol">
                             <span class="currency-symbol">£</span>
-                            <input type="number" id="monthlyRent" name="monthlyRent" placeholder="e.g., 1200" min="0" step="50" required>
+                            <input type="number" id="monthlyRent" name="monthlyRent" placeholder="e.g., 1200" min="100" step="50" value="1200" required>
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label for="timeframe">Timeframe (years)</label>
-                        <input type="number" id="timeframe" name="timeframe" class="select-input" placeholder="e.g., 10" min="1" max="30" value="10" required>
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Location (for Stamp Duty)</label>
+                        <select id="location" name="location" class="select-input">
+                            <option value="uk" selected>England, Wales, or Northern Ireland</option>
+                            <option value="scotland">Scotland</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-question-circle"></i> Is this an additional property?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="additionalProperty" value="no" checked>
+                                <span>No</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="additionalProperty" value="yes">
+                                <span>Yes</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-section">
                     <div class="section-header">
+                        <i class="fas fa-calculator section-icon"></i>
                         <h2>Buying Costs</h2>
                     </div>
                     
                     <div class="input-group">
-                        <label for="deposit">Deposit</label>
+                        <label for="deposit"><i class="fas fa-piggy-bank"></i> Deposit</label>
                         <div class="input-with-symbol">
                             <span class="currency-symbol">£</span>
-                            <input type="number" id="deposit" name="deposit" placeholder="e.g., 30000" min="0" step="5000" required>
+                            <input type="number" id="deposit" name="deposit" placeholder="e.g., 30000" min="0" step="1000" value="30000" required>
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label for="mortgageRate">Mortgage interest rate (%)</label>
+                        <label for="mortgageRate"><i class="fas fa-percentage"></i> Mortgage Interest Rate (%)</label>
                         <div class="input-with-symbol">
                             <input type="number" id="mortgageRate" name="mortgageRate" placeholder="e.g., 4.5" min="0" max="20" step="0.1" value="4.5" required style="padding-left: 0.75rem;">
                             <span class="percent-symbol">%</span>
@@ -113,93 +134,131 @@
                     </div>
 
                     <div class="input-group">
-                        <label for="stampDuty">Stamp duty & legal fees</label>
+                        <label for="mortgageTerm"><i class="fas fa-calendar-alt"></i> Mortgage Term (years)</label>
+                        <input type="number" id="mortgageTerm" name="mortgageTerm" class="select-input" placeholder="e.g., 25" min="5" max="40" value="25" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="adminFees"><i class="fas fa-file-invoice-dollar"></i> Admin Fees (Solicitor, Survey, etc.)</label>
                         <div class="input-with-symbol">
                             <span class="currency-symbol">£</span>
-                            <input type="number" id="stampDuty" name="stampDuty" placeholder="e.g., 5000" min="0" step="500" value="5000">
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="maintenanceCost">Annual maintenance & repairs</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="maintenanceCost" name="maintenanceCost" placeholder="e.g., 1000" min="0" step="100" value="1000">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <div class="section-header">
-                        <h2>Assumptions</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="propertyGrowth">Annual property price growth (%)</label>
-                        <div class="input-with-symbol">
-                            <input type="number" id="propertyGrowth" name="propertyGrowth" placeholder="e.g., 3" min="-10" max="20" step="0.5" value="3" style="padding-left: 0.75rem;">
-                            <span class="percent-symbol">%</span>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="rentIncrease">Annual rent increase (%)</label>
-                        <div class="input-with-symbol">
-                            <input type="number" id="rentIncrease" name="rentIncrease" placeholder="e.g., 2" min="0" max="20" step="0.5" value="2" style="padding-left: 0.75rem;">
-                            <span class="percent-symbol">%</span>
+                            <input type="number" id="adminFees" name="adminFees" placeholder="e.g., 2000" min="0" step="100" value="2000" required>
                         </div>
                     </div>
                 </div>
 
                 <button type="submit" class="calculate-btn">
-                    <i class="fas fa-calculator"></i> Compare costs
+                    <i class="fas fa-balance-scale"></i> Compare Buy vs Rent
                 </button>
             </form>
 
             <div id="results" class="results-section" style="display: none;">
                 <div class="results-header">
-                    <h2>Cost Comparison</h2>
+                    <i class="fas fa-chart-bar"></i>
+                    <h2>Buy vs Rent Comparison</h2>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-info-circle"></i>
+                    <p>This comparison shows your net position after 5 years under different property growth scenarios. Buying includes equity built up minus all costs. Renting shows savings from not buying.</p>
                 </div>
                 
-                <div class="table-breakdown">
+                <div class="breakdown">
+                    <h3><i class="fas fa-list-ul"></i> Initial Costs</h3>
+                    
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-file-invoice-dollar"></i> Stamp Duty</span>
+                        <span id="stampDuty">£0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-receipt"></i> Admin Fees</span>
+                        <span id="displayAdminFees">£0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-piggy-bank"></i> Deposit</span>
+                        <span id="displayDeposit">£0</span>
+                    </div>
+
+                    <div class="breakdown-divider"></div>
+
+                    <div class="breakdown-item total">
+                        <span><i class="fas fa-coins"></i> Total Upfront Cost</span>
+                        <span id="totalUpfront">£0</span>
+                    </div>
+                </div>
+
+                <div class="breakdown">
+                    <h3><i class="fas fa-calendar-alt"></i> Monthly Costs</h3>
+                    
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-home"></i> Monthly Mortgage Payment</span>
+                        <span id="monthlyMortgage">£0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-receipt"></i> Monthly Rent</span>
+                        <span id="displayRent">£0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-exchange-alt"></i> Monthly Difference</span>
+                        <span id="monthlyDifference">£0</span>
+                    </div>
+                </div>
+
+                <div class="breakdown">
+                    <h3><i class="fas fa-chart-line"></i> 5-Year Comparison by Property Growth Rate</h3>
+                    
                     <div class="table-responsive">
                         <table class="breakdown-table">
                             <thead>
                                 <tr>
-                                    <th>Cost Type</th>
-                                    <th>Buying</th>
-                                    <th>Renting</th>
+                                    <th>Property Growth</th>
+                                    <th>Property Value</th>
+                                    <th>Equity Built</th>
+                                    <th>Total Cost to Buy</th>
+                                    <th>Total Cost to Rent</th>
+                                    <th>Better Option</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Initial Costs</strong></td>
-                                    <td id="buyInitial">£0</td>
-                                    <td id="rentInitial">£0</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Monthly Costs</strong></td>
-                                    <td id="buyMonthly">£0</td>
-                                    <td id="rentMonthly">£0</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Total Cost (over timeframe)</strong></td>
-                                    <td id="buyTotal">£0</td>
-                                    <td id="rentTotal">£0</td>
-                                </tr>
-                                <tr class="total-row">
-                                    <td><strong>Net Position</strong></td>
-                                    <td id="buyNet">£0</td>
-                                    <td id="rentNet">£0</td>
-                                </tr>
+                            <tbody id="comparisonTable">
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="breakdown">
-                    <h3 id="recommendation">Recommendation</h3>
-                    <p id="recommendationText" style="font-size: 0.95rem; line-height: 1.6;"></p>
+                <div style="background: white; padding: 2rem; border-radius: 8px; margin-top: 1.5rem;">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="info-section">
+                <h2><i class="fas fa-lightbulb"></i> Factors to Consider</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Property Growth</h3>
+                        <p>Historical UK average is around 4% annually, but this varies significantly by location and time period. Property values can fall.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Maintenance & Repairs</h3>
+                        <p>As a homeowner, you're responsible for all maintenance and repairs. Budget around 1% of property value annually.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Flexibility</h3>
+                        <p>Renting offers more flexibility to move. Selling a property takes time and incurs estate agent fees (typically 1-3%).</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Interest Rates</h3>
+                        <p>Mortgage rates can change when you remortgage. Fixed-rate periods typically last 2-5 years.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,8 +266,10 @@
         <footer>
             <div class="footer-content">
                 <p class="disclaimer">
-                    <strong>Disclaimer:</strong> This calculator provides estimates based on the assumptions you provide. 
-                    Actual costs and property values may vary. Consider your personal circumstances and seek professional advice.
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Disclaimer:</strong> This calculator provides estimates for comparison purposes only. 
+                    It doesn't include all costs (e.g., maintenance, insurance, council tax). Property values can fall as well as rise. 
+                    Always seek professional financial advice.
                 </p>
                 <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
                     © 2024 QuidsIn. All rights reserved.
@@ -218,7 +279,7 @@
     </div>
 
     <script src="navigation.js"></script>
+    <script src="stamp-duty-calculator.js"></script>
     <script src="buy-or-rent.js"></script>
 </body>
 </html>
-

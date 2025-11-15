@@ -58,103 +58,92 @@
 
     <div class="container">
         <header>
-            <h1>Mortgage Calculator</h1>
-            <p class="subtitle">Calculate how much you can borrow and your monthly repayments</p>
+            <h1><i class="fas fa-calculator"></i> Mortgage Calculator</h1>
+            <p class="subtitle">Calculate your monthly mortgage repayments</p>
         </header>
 
         <div class="calculator-card">
             <form id="mortgageForm">
                 <div class="form-section">
                     <div class="section-header">
-                        <h2>Your Details</h2>
+                        <i class="fas fa-home section-icon"></i>
+                        <h2>Mortgage Details</h2>
                     </div>
                     
                     <div class="input-group">
-                        <label for="buyers">How many buyers?</label>
-                        <select id="buyers" name="buyers" class="select-input">
-                            <option value="1" selected>1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="income1">First buyer's annual income</label>
+                        <label for="loanAmount"><i class="fas fa-pound-sign"></i> Loan Amount</label>
                         <div class="input-with-symbol">
                             <span class="currency-symbol">£</span>
-                            <input type="number" id="income1" name="income1" placeholder="Enter amount" min="0" step="1000" required>
-                        </div>
-                    </div>
-
-                    <div class="input-group" id="income2Group" style="display: none;">
-                        <label for="income2">Second buyer's annual income</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="income2" name="income2" placeholder="Enter amount" min="0" step="1000">
+                            <input type="number" id="loanAmount" name="loanAmount" placeholder="e.g., 200000" min="1000" step="1000" value="200000" required>
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label for="deposit">Deposit</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="deposit" name="deposit" placeholder="Enter amount" min="0" step="1000" required>
-                        </div>
+                        <label for="term"><i class="fas fa-calendar-alt"></i> Mortgage Term (years)</label>
+                        <input type="number" id="term" name="term" class="select-input" placeholder="e.g., 25" min="1" max="40" value="25" required>
+                        <small style="color: var(--text-medium); display: block; margin-top: 0.25rem;">Typical terms are between 5 and 40 years</small>
                     </div>
 
                     <div class="input-group">
-                        <label for="term">Total mortgage term (years)</label>
-                        <input type="number" id="term" name="term" class="select-input" placeholder="e.g., 25" min="5" max="40" value="25" required>
-                        <small style="color: var(--text-medium); display: block; margin-top: 0.25rem;">The term should be between 5 and 40 years</small>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="interestRate">Interest rate (%)</label>
+                        <label for="interestRate"><i class="fas fa-percentage"></i> Interest Rate (%)</label>
                         <div class="input-with-symbol">
-                            <input type="number" id="interestRate" name="interestRate" placeholder="e.g., 4.5" min="0" max="20" step="0.1" value="4.5" required style="padding-left: 0.75rem;">
+                            <input type="number" id="interestRate" name="interestRate" placeholder="e.g., 4.5" min="0" max="20" step="0.01" value="4.5" required style="padding-left: 0.75rem;">
                             <span class="percent-symbol">%</span>
                         </div>
                     </div>
                 </div>
 
                 <button type="submit" class="calculate-btn">
-                    <i class="fas fa-calculator"></i> Calculate my mortgage
+                    <i class="fas fa-calculator"></i> Calculate Monthly Payment
                 </button>
             </form>
 
             <div id="results" class="results-section" style="display: none;">
                 <div class="results-header">
-                    <h2>Your Result</h2>
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Your Monthly Payment</h2>
                 </div>
                 
-                <div class="breakdown">
-                    <div class="breakdown-item total">
-                        <span>You could borrow up to:</span>
-                        <span id="maxLoan" style="font-size: 1.5rem;">£0</span>
+                <div class="summary-card">
+                    <div class="net-pay-display">
+                        <div class="net-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="net-label">Monthly Payment</span>
+                        <span class="net-amount" id="monthlyPayment">£0</span>
+                        <span class="net-period">per month</span>
                     </div>
-                    <p style="font-size: 0.85rem; color: var(--text-medium); margin-top: 0.5rem;">
-                        This is the largest mortgage you're likely to be offered, based on your total income of <strong id="totalIncome">£0</strong>
-                    </p>
                 </div>
 
                 <div class="breakdown">
-                    <div class="breakdown-item total">
-                        <span>Your monthly repayments could be:</span>
-                        <span id="monthlyPayment" style="font-size: 1.5rem;">£0</span>
+                    <h3><i class="fas fa-list-ul"></i> Breakdown</h3>
+                    
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-pound-sign"></i> Loan Amount</span>
+                        <span id="displayLoan">£0</span>
                     </div>
-                    <p style="font-size: 0.85rem; color: var(--text-medium); margin-top: 0.5rem;">
-                        This assumes an interest rate of <strong id="displayRate">0%</strong> throughout your total mortgage term of <strong id="displayTerm">0 years</strong>
-                    </p>
-                </div>
 
-                <div class="breakdown">
-                    <div class="breakdown-item total">
-                        <span>Your loan-to-value (LTV) ratio is:</span>
-                        <span id="ltvRatio" style="font-size: 1.5rem;">0%</span>
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-calendar-alt"></i> Mortgage Term</span>
+                        <span id="displayTerm">0 years</span>
                     </div>
-                    <p style="font-size: 0.85rem; color: var(--text-medium); margin-top: 0.5rem;">
-                        This is based on your maximum loan size of <strong id="loanForLTV">£0</strong> and your deposit <strong id="depositForLTV">£0</strong>
-                    </p>
-                    <p id="ltvAdvice" style="font-size: 0.85rem; color: var(--text-medium); margin-top: 0.5rem;"></p>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-percentage"></i> Interest Rate</span>
+                        <span id="displayRate">0%</span>
+                    </div>
+
+                    <div class="breakdown-divider"></div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-coins"></i> Total Repayment</span>
+                        <span id="totalRepayment">£0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span><i class="fas fa-chart-line"></i> Total Interest</span>
+                        <span id="totalInterest">£0</span>
+                    </div>
                 </div>
             </div>
         </div>
