@@ -104,31 +104,31 @@ function calculateIncomeTax(adjustedGrossSalary, taxYear) {
         return 0; // All income covered by personal allowance
     }
     
-    // UK Tax calculation uses GROSS income thresholds (not taxable income):
-    // £0 to £37,700: Basic rate (20%) - but first £12,570 covered by PA (if available)
-    // £37,700 to £125,140: Higher rate (40%)
+    // UK Tax calculation:
+    // Tax is applied to TAXABLE income (after PA is deducted)
+    // Tax band widths based on taxable income:
+    // £0 to £37,700: Basic rate (20%)
+    // £37,700 to £125,140: Higher rate (40%) 
     // £125,140+: Additional rate (45%)
     
-    // Calculate tax on income after personal allowance deduction
-    // Basic rate: First £37,700 of gross income at 20% (minus any PA)
-    if (adjustedGrossSalary > 0) {
-        const basicBandGross = Math.min(adjustedGrossSalary, 37700);
-        const taxableBasic = Math.max(0, basicBandGross - personalAllowance);
-        tax += taxableBasic * 0.20;
+    const taxableIncome = adjustedGrossSalary - personalAllowance;
+    
+    // Basic rate: First £37,700 of taxable income at 20%
+    if (taxableIncome > 0) {
+        const basicRateTaxable = Math.min(taxableIncome, 37700);
+        tax += basicRateTaxable * 0.20;
     }
     
-    // Higher rate: £37,700 to £125,140 of gross income at 40%
-    if (adjustedGrossSalary > 37700) {
-        const higherBandGross = Math.min(adjustedGrossSalary, 125140) - 37700;
-        const paRemainder = Math.max(0, personalAllowance - 37700);
-        const taxableHigher = Math.max(0, higherBandGross - paRemainder);
-        tax += taxableHigher * 0.40;
+    // Higher rate: £37,700 to £125,140 of taxable income at 40%
+    if (taxableIncome > 37700) {
+        const higherRateTaxable = Math.min(taxableIncome - 37700, 125140 - 37700);
+        tax += higherRateTaxable * 0.40;
     }
     
-    // Additional rate: Above £125,140 of gross income at 45%
-    if (adjustedGrossSalary > 125140) {
-        const additionalBandGross = adjustedGrossSalary - 125140;
-        tax += additionalBandGross * 0.45;
+    // Additional rate: Above £125,140 of taxable income at 45%
+    if (taxableIncome > 125140) {
+        const additionalRateTaxable = taxableIncome - 125140;
+        tax += additionalRateTaxable * 0.45;
     }
     
     return Math.round(tax * 100) / 100;
