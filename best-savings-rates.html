@@ -60,124 +60,392 @@
 
     <div class="container">
         <header>
-            <h1><i class="fas fa-piggy-bank"></i> Best Savings Rates</h1>
-            <p class="subtitle">Compare the top savings account rates in the UK - Updated November 2025</p>
+            <h1><i class="fas fa-piggy-bank"></i> Latest Savings Rates</h1>
+            <p class="subtitle">Compare the top savings account rates in the UK</p>
         </header>
 
         <div class="calculator-card">
             <div class="info-box">
                 <i class="fas fa-clock"></i>
-                <p><strong>Last updated:</strong> November 2025 • Rates shown are indicative and subject to change. Always verify with the provider.</p>
+                <p><strong>Updated:</strong> 15 November 2025 • Rates shown are indicative and can change at any time. Always verify with the provider before opening an account.</p>
             </div>
 
             <!-- Easy Access Savings -->
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-hand-holding-usd section-icon"></i>
-                    <h2>Easy Access Savings Accounts</h2>
-                </div>
-                <p style="margin-bottom: 1.5rem; color: var(--text-medium);">
-                    Withdraw your money anytime without penalties. Perfect for emergency funds and short-term savings.
-                </p>
+            <div class="savings-section">
+                <h2><i class="fas fa-hand-holding-usd"></i> Easy Access Savings</h2>
+                <p class="section-description">Access your money whenever you need it with no withdrawal penalties or notice periods.</p>
+                
+                <div class="savings-rates-container">
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">West Brom BS</strong>
+                                <span class="account-type">Easy Access</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.55</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Maximum balance</span>
+                                <span class="detail-value">£500,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">3 penalty-free withdrawals/year</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="rates-table">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Provider</th>
-                                <th>Interest Rate (AER)</th>
-                                <th>Min. Deposit</th>
-                                <th>Max. Balance</th>
-                                <th>Key Features</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>West Brom BS</strong></td>
-                                <td><span class="rate-highlight">4.55%</span></td>
-                                <td>£1</td>
-                                <td>£500,000</td>
-                                <td>3 penalty-free withdrawals per year</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Monument Bank</strong></td>
-                                <td><span class="rate-highlight">4.51%</span></td>
-                                <td>£25,000</td>
-                                <td>£85,000</td>
-                                <td>Premium rate for larger balances</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Chase</strong></td>
-                                <td><span class="rate-highlight">4.50%</span></td>
-                                <td>£1</td>
-                                <td>£250,000</td>
-                                <td>Includes 6-month bonus of 1.75% AER</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Revolut</strong></td>
-                                <td><span class="rate-highlight">4.50%</span></td>
-                                <td>£1</td>
-                                <td>£100,000</td>
-                                <td>Requires Premium/Metal membership</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ulster Bank</strong></td>
-                                <td><span class="rate-highlight">4.50%</span></td>
-                                <td>£1</td>
-                                <td>£250,000</td>
-                                <td>Online account management</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Monument Bank</strong>
+                                <span class="account-type">Easy Access</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.51</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£25,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Maximum balance</span>
+                                <span class="detail-value">£85,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">Instant access</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Chase</strong>
+                                <span class="account-type">Easy Access</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.50</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Maximum balance</span>
+                                <span class="detail-value">£250,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Bonus</span>
+                                <span class="detail-value">Includes 1.75% 6-month bonus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Revolut</strong>
+                                <span class="account-type">Easy Access</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.50</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Maximum balance</span>
+                                <span class="detail-value">£100,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Requirement</span>
+                                <span class="detail-value">Premium/Metal membership</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Ulster Bank</strong>
+                                <span class="account-type">Easy Access</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.50</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Maximum balance</span>
+                                <span class="detail-value">£250,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">Instant access</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Notice Accounts -->
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-calendar-check section-icon"></i>
-                    <h2>Notice Accounts</h2>
-                </div>
-                <p style="margin-bottom: 1.5rem; color: var(--text-medium);">
-                    Higher rates in exchange for giving advance notice before withdrawals (typically 30-120 days).
-                </p>
+            <!-- 1 Year Fixed -->
+            <div class="savings-section">
+                <h2><i class="fas fa-lock"></i> 1 Year Fixed Rate</h2>
+                <p class="section-description">Lock in your rate for one year. Your money is inaccessible until maturity.</p>
+                
+                <div class="savings-rates-container">
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Monument Bank</strong>
+                                <span class="account-type">1 Year Fixed</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.47</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£25,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">12 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Interest paid</span>
+                                <span class="detail-value">At maturity</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h3>30 Day Notice</h3>
-                        <p class="rate-highlight" style="font-size: 1.5rem; margin: 0.5rem 0;">4.75%</p>
-                        <p style="font-size: 0.9rem; color: var(--text-medium);">Typical rate range: 4.50% - 4.75%</p>
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">LHV Bank</strong>
+                                <span class="account-type">1 Year Fixed</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.46</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">12 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Interest paid</span>
+                                <span class="detail-value">At maturity</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tip-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h3>60 Day Notice</h3>
-                        <p class="rate-highlight" style="font-size: 1.5rem; margin: 0.5rem 0;">4.85%</p>
-                        <p style="font-size: 0.9rem; color: var(--text-medium);">Typical rate range: 4.60% - 4.85%</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h3>90-120 Day Notice</h3>
-                        <p class="rate-highlight" style="font-size: 1.5rem; margin: 0.5rem 0;">4.95%</p>
-                        <p style="font-size: 0.9rem; color: var(--text-medium);">Typical rate range: 4.70% - 4.95%</p>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Conister Bank</strong>
+                                <span class="account-type">1 Year Fixed</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.45</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£5,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">12 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Interest paid</span>
+                                <span class="detail-value">At maturity</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Regular Savers -->
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-coins section-icon"></i>
-                    <h2>Regular Saver Accounts</h2>
-                </div>
-                <p style="margin-bottom: 1.5rem; color: var(--text-medium);">
-                    Save a fixed amount each month for higher rates. Usually limited to 12 months with maximum monthly deposits.
-                </p>
+            <!-- Cash ISAs -->
+            <div class="savings-section">
+                <h2><i class="fas fa-shield-alt"></i> Cash ISAs (Tax-Free)</h2>
+                <p class="section-description">Save up to £20,000 per tax year with tax-free interest. ISA allowance for 2025/26: £20,000.</p>
+                
+                <h3 style="margin: 1.5rem 0 1rem 0; font-size: 1.1rem; color: var(--text-dark);">Easy Access Cash ISAs</h3>
+                <div class="savings-rates-container">
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Hargreaves Lansdown</strong>
+                                <span class="account-type">Easy Access ISA</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.55</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Tax status</span>
+                                <span class="detail-value">Tax-free interest</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Note</span>
+                                <span class="detail-value">Market-leading rate*</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="info-box" style="background: #e8f4f8; border-color: var(--primary-color);">
-                    <i class="fas fa-star"></i>
-                    <p><strong>Top Regular Saver Rates:</strong> Up to 7.00% AER available from high street banks for customers with current accounts. 
-                    Typical maximum monthly deposit: £200-£500. Terms usually 12 months.</p>
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Chip</strong>
+                                <span class="account-type">Easy Access ISA</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">5.10</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Minimum deposit</span>
+                                <span class="detail-value">£1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Tax status</span>
+                                <span class="detail-value">Tax-free interest</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Platform</span>
+                                <span class="detail-value">App-based</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-dark);">Fixed Rate Cash ISAs</h3>
+                <div class="savings-rates-container">
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Various Providers</strong>
+                                <span class="account-type">1 Year Fixed ISA</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.35</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">12 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Tax status</span>
+                                <span class="detail-value">Tax-free interest</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">Locked until maturity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Various Providers</strong>
+                                <span class="account-type">2 Year Fixed ISA</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.16</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">24 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Tax status</span>
+                                <span class="detail-value">Tax-free interest</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">Locked until maturity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-rate-card">
+                        <div class="rate-card-top">
+                            <div class="provider-info">
+                                <strong class="provider-name">Various Providers</strong>
+                                <span class="account-type">3 Year Fixed ISA</span>
+                            </div>
+                            <div class="rate-display-large">
+                                <span class="rate-number">4.13</span>
+                                <span class="rate-percent">% AER</span>
+                            </div>
+                        </div>
+                        <div class="rate-card-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">36 months</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Tax status</span>
+                                <span class="detail-value">Tax-free interest</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Access</span>
+                                <span class="detail-value">Locked until maturity</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -214,12 +482,12 @@
             <div class="breakdown">
                 <h3><i class="fas fa-lightbulb"></i> What to Look For in a Savings Account</h3>
                 <ul style="margin: 1rem 0; padding-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Interest Rate (AER)</strong> - Annual Equivalent Rate shows what you'll earn over a year including compound interest</li>
-                    <li><strong>Access Terms</strong> - Consider how quickly you need access to your money</li>
-                    <li><strong>FSCS Protection</strong> - Ensure your savings are protected up to £85,000 per institution</li>
+                    <li><strong>AER (Annual Equivalent Rate)</strong> - Shows what you'll earn over a year including compound interest</li>
+                    <li><strong>Access Terms</strong> - Easy access, notice periods, or fixed terms affect when you can withdraw</li>
+                    <li><strong>FSCS Protection</strong> - Ensure savings are protected up to £85,000 per institution</li>
                     <li><strong>Minimum/Maximum Balance</strong> - Check deposit requirements and limits</li>
-                    <li><strong>Withdrawal Restrictions</strong> - Be aware of any penalties or limits on accessing funds</li>
                     <li><strong>Bonus Rates</strong> - Some accounts offer introductory bonuses that expire after a set period</li>
+                    <li><strong>Tax Treatment</strong> - Consider your Personal Savings Allowance or use a Cash ISA for tax-free interest</li>
                 </ul>
             </div>
 
@@ -243,7 +511,8 @@
                 <p class="disclaimer">
                     <i class="fas fa-info-circle"></i>
                     <strong>Disclaimer:</strong> Interest rates change frequently and are subject to eligibility criteria. 
-                    Always check current rates and terms directly with providers. FSCS protection applies per person, per institution.
+                    Always check current rates and terms directly with providers. FSCS protection applies per person, per institution (up to £85,000). 
+                    *Market-leading rate checked against Moneyfacts on 14 November 2025. Source: <a href="https://www.hl.co.uk/savings/latest-savings-rates-and-products" target="_blank" style="color: var(--primary-color);">Hargreaves Lansdown</a>
                 </p>
                 <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
                     © 2024 Quids In. All rights reserved.
