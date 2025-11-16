@@ -863,7 +863,7 @@ footer {
     margin-bottom: 1rem;
 }
 
-/* HL-Style Tables */
+/* Rates Tables */
 .rates-section {
     margin: 2.5rem 0;
 }
@@ -891,7 +891,7 @@ footer {
     font-style: italic;
 }
 
-.hl-table {
+.comparison-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
@@ -1078,7 +1078,7 @@ footer {
     font-weight: bold;
 }
 
-/* HL-Style Savings Rate Cards */
+/* Savings Rate Cards */
 .savings-section {
     margin: 2.5rem 0;
 }
@@ -1192,7 +1192,7 @@ footer {
     text-align: right;
 }
 
-/* HL-Style Savings Product Cards */
+/* Savings Product Cards */
 .savings-products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1299,7 +1299,7 @@ footer {
     text-align: right;
 }
 
-/* Mortgage Finder MSE-Style Layout */
+/* Mortgage Finder Layout */
 .mortgage-finder-container {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -1607,7 +1607,7 @@ footer {
     }
     
     /* Mobile Tables */
-    .hl-table {
+    .comparison-table {
         font-size: 0.85rem;
     }
     

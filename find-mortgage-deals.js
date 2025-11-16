@@ -1,4 +1,4 @@
-// Find Mortgage Deals JavaScript - MSE Style
+// Find Mortgage Deals JavaScript
 
 // Mortgage deals data (November 2025 rates)
 const MORTGAGE_DEALS = [
