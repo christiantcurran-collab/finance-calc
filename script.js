@@ -146,31 +146,24 @@ function calculateIncomeTax(adjustedGrossSalary, taxYear, isScotland = false) {
         return 0; // All income covered by personal allowance
     }
     
-    // UK Tax calculation:
-    // Tax is applied to TAXABLE income (after PA is deducted)
-    // Tax band widths based on taxable income:
-    // £0 to £37,700: Basic rate (20%)
-    // £37,700 to £125,140: Higher rate (40%) 
-    // £125,140+: Additional rate (45%)
-    
     const taxableIncome = adjustedGrossSalary - personalAllowance;
     
-    // Basic rate: First £37,700 of taxable income at 20%
-    if (taxableIncome > 0) {
-        const basicRateTaxable = Math.min(taxableIncome, 37700);
-        tax += basicRateTaxable * 0.20;
-    }
-    
-    // Higher rate: £37,700 to £125,140 of taxable income at 40%
-    if (taxableIncome > 37700) {
-        const higherRateTaxable = Math.min(taxableIncome - 37700, 125140 - 37700);
-        tax += higherRateTaxable * 0.40;
-    }
-    
-    // Additional rate: Above £125,140 of taxable income at 45%
-    if (taxableIncome > 125140) {
-        const additionalRateTaxable = taxableIncome - 125140;
-        tax += additionalRateTaxable * 0.45;
+    // Apply tax bands from config
+    for (let i = 0; i < config.taxBands.length; i++) {
+        const band = config.taxBands[i];
+        const bandStart = i === 0 ? 0 : config.taxBands[i - 1].limit - personalAllowance;
+        const bandEnd = band.limit - personalAllowance;
+        
+        if (taxableIncome > bandStart) {
+            const taxableInBand = Math.min(taxableIncome, bandEnd) - bandStart;
+            if (taxableInBand > 0) {
+                tax += taxableInBand * band.rate;
+            }
+        }
+        
+        if (taxableIncome <= bandEnd) {
+            break;
+        }
     }
     
     return Math.round(tax * 100) / 100;
