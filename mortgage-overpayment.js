@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Display results
         document.getElementById('normalMonthly').textContent = formatCurrency(normalResults.monthlyPayment);
-        document.getElementById('overpaymentMonthly').textContent = formatCurrency(overpaymentResults.monthlyPayment);
+        document.getElementById('overpaymentMonthly').textContent = formatCurrency(overpaymentResults.monthlyPayment + overpaymentAmount);
         document.getElementById('monthlyDiff').textContent = '+' + formatCurrency(overpaymentAmount);
 
         document.getElementById('normalInterest').textContent = formatCurrency(normalResults.totalInterest);
