@@ -37,25 +37,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function projectPropertyValue() {
         const propertyValue = parseFloat(document.getElementById('propertyValue').value);
+        const deposit = parseFloat(document.getElementById('deposit').value);
 
-        // Get 20-year projections
-        const year20 = PROJECTION_DATA[19]; // Year 20 data
+        // Get 5-year projections
+        const year5 = PROJECTION_DATA[4]; // Year 5 data
 
         // Calculate projected values for each percentile
         const projections = {
-            p10: { multiplier: year20.p10, value: propertyValue * year20.p10, label: '10th Percentile (Pessimistic)' },
-            p25: { multiplier: year20.p25, value: propertyValue * year20.p25, label: '25th Percentile (Below Average)' },
-            p50: { multiplier: year20.p50, value: propertyValue * year20.p50, label: '50th Percentile (Median)' },
-            p75: { multiplier: year20.p75, value: propertyValue * year20.p75, label: '75th Percentile (Above Average)' },
-            p90: { multiplier: year20.p90, value: propertyValue * year20.p90, label: '90th Percentile (Optimistic)' }
+            p10: { multiplier: year5.p10, value: propertyValue * year5.p10, label: '10th Percentile (Pessimistic)' },
+            p25: { multiplier: year5.p25, value: propertyValue * year5.p25, label: '25th Percentile (Below Average)' },
+            p50: { multiplier: year5.p50, value: propertyValue * year5.p50, label: '50th Percentile (Median)' },
+            p75: { multiplier: year5.p75, value: propertyValue * year5.p75, label: '75th Percentile (Above Average)' },
+            p90: { multiplier: year5.p90, value: propertyValue * year5.p90, label: '90th Percentile (Optimistic)' }
         };
 
         // Display results
-        displayResults(propertyValue, projections);
+        displayResults(propertyValue, deposit, projections);
         createChart(propertyValue);
     }
 
-    function displayResults(initialValue, projections) {
+    function displayResults(initialValue, deposit, projections) {
         const tableBody = document.getElementById('projectionTable');
         tableBody.innerHTML = '';
 
@@ -83,9 +84,47 @@ document.addEventListener('DOMContentLoaded', function() {
             tableBody.appendChild(row);
         });
 
+        // Display equity projections
+        displayEquityResults(initialValue, deposit, projections);
+
         // Show results
         resultsSection.style.display = 'block';
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function displayEquityResults(initialValue, deposit, projections) {
+        const equityTableBody = document.getElementById('equityTable');
+        equityTableBody.innerHTML = '';
+
+        const mortgageBalance = initialValue - deposit;
+
+        // Create equity table rows for each percentile
+        const percentiles = ['p10', 'p25', 'p50', 'p75', 'p90'];
+        percentiles.forEach(p => {
+            const proj = projections[p];
+            const futureEquity = proj.value - mortgageBalance;
+            const equityChange = futureEquity - deposit;
+            const equityChangePercent = deposit > 0 ? ((equityChange / deposit) * 100).toFixed(1) : 0;
+
+            const row = document.createElement('tr');
+            if (p === 'p50') {
+                row.className = 'highlight-row';
+            }
+            
+            row.innerHTML = `
+                <td><strong>${proj.label}</strong></td>
+                <td>£${proj.value.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                <td>£${mortgageBalance.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                <td><strong style="color: ${futureEquity >= 0 ? 'var(--success-color)' : 'var(--danger-color)'}">
+                    £${futureEquity.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </strong></td>
+                <td style="color: ${equityChange >= 0 ? 'var(--success-color)' : 'var(--danger-color)'}">
+                    ${equityChange >= 0 ? '+' : ''}£${equityChange.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                    ${deposit > 0 ? ` (${equityChange >= 0 ? '+' : ''}${equityChangePercent}%)` : ''}
+                </td>
+            `;
+            equityTableBody.appendChild(row);
+        });
     }
 
     function createChart(initialValue) {
@@ -96,13 +135,14 @@ document.addEventListener('DOMContentLoaded', function() {
             projectionChart.destroy();
         }
 
-        // Prepare data for chart
-        const years = [0, ...PROJECTION_DATA.map(d => d.year)];
-        const p10Data = [initialValue, ...PROJECTION_DATA.map(d => initialValue * d.p10)];
-        const p25Data = [initialValue, ...PROJECTION_DATA.map(d => initialValue * d.p25)];
-        const p50Data = [initialValue, ...PROJECTION_DATA.map(d => initialValue * d.p50)];
-        const p75Data = [initialValue, ...PROJECTION_DATA.map(d => initialValue * d.p75)];
-        const p90Data = [initialValue, ...PROJECTION_DATA.map(d => initialValue * d.p90)];
+        // Prepare data for chart (5 years only)
+        const fiveYearData = PROJECTION_DATA.slice(0, 5);
+        const years = [0, ...fiveYearData.map(d => d.year)];
+        const p10Data = [initialValue, ...fiveYearData.map(d => initialValue * d.p10)];
+        const p25Data = [initialValue, ...fiveYearData.map(d => initialValue * d.p25)];
+        const p50Data = [initialValue, ...fiveYearData.map(d => initialValue * d.p50)];
+        const p75Data = [initialValue, ...fiveYearData.map(d => initialValue * d.p75)];
+        const p90Data = [initialValue, ...fiveYearData.map(d => initialValue * d.p90)];
 
         // Create funnel chart (area chart with multiple lines)
         projectionChart = new Chart(ctx, {
@@ -164,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     title: {
                         display: true,
-                        text: '20-Year Property Value Projection Range',
+                        text: '5-Year Property Value Projection Range',
                         font: {
                             size: 16,
                             weight: 'bold'

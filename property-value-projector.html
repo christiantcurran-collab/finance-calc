@@ -89,7 +89,7 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-chart-line"></i> Property Value Projector</h1>
-            <p class="subtitle">Project your property value over 20 years based on historical trends</p>
+            <p class="subtitle">Project your property value and equity over 5 years based on historical trends</p>
         </header>
 
         <div class="calculator-card">
@@ -107,17 +107,26 @@
                             <input type="number" id="propertyValue" name="propertyValue" placeholder="e.g., 300000" min="10000" step="1000" value="300000" required>
                         </div>
                     </div>
+
+                    <div class="input-group">
+                        <label for="deposit"><i class="fas fa-wallet"></i> Your Deposit / Current Equity</label>
+                        <div class="input-with-symbol">
+                            <span class="currency-symbol">£</span>
+                            <input type="number" id="deposit" name="deposit" placeholder="e.g., 60000" min="0" step="1000" value="60000" required>
+                        </div>
+                        <small style="color: var(--text-medium); display: block; margin-top: 0.25rem;">Enter your deposit if buying, or current equity if you already own the property</small>
+                    </div>
                 </div>
 
                 <button type="submit" class="calculate-btn">
-                    <i class="fas fa-chart-area"></i> Project Property Value
+                    <i class="fas fa-chart-area"></i> Project Value & Equity
                 </button>
             </form>
 
             <div id="results" class="results-section" style="display: none;">
                 <div class="results-header">
                     <i class="fas fa-chart-line"></i>
-                    <h2>20-Year Property Value Projection</h2>
+                    <h2>5-Year Property Value Projection</h2>
                 </div>
 
                 <div class="info-box" style="margin-bottom: 1.5rem;">
@@ -130,7 +139,7 @@
                 </div>
 
                 <div class="breakdown">
-                    <h3><i class="fas fa-table"></i> Projected Values After 20 Years</h3>
+                    <h3><i class="fas fa-table"></i> Projected Property Values After 5 Years</h3>
                     
                     <div class="table-responsive">
                         <table class="breakdown-table">
@@ -146,6 +155,29 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <div class="breakdown" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-piggy-bank"></i> Projected Equity After 5 Years</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Scenario</th>
+                                    <th>Property Value</th>
+                                    <th>Mortgage Balance</th>
+                                    <th>Your Equity</th>
+                                    <th>Equity Change</th>
+                                </tr>
+                            </thead>
+                            <tbody id="equityTable">
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--text-medium); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Mortgage balance assumes interest-only mortgage. With a repayment mortgage, your equity would be higher.
+                    </p>
                 </div>
 
                 <div class="tips-grid" style="margin-top: 2rem;">
