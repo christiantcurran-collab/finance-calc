@@ -137,7 +137,9 @@ function calculatePersonalAllowance(adjustedGrossSalary, taxYear, isScotland = f
 
 // Calculate income tax
 function calculateIncomeTax(adjustedGrossSalary, taxYear, isScotland = false) {
+    console.log('calculateIncomeTax called with isScotland:', isScotland);
     const config = isScotland ? SCOTTISH_TAX_CONFIG[taxYear] : TAX_CONFIG[taxYear];
+    console.log('Using config:', isScotland ? 'SCOTTISH' : 'UK', 'Tax bands:', config.taxBands.length);
     const personalAllowance = calculatePersonalAllowance(adjustedGrossSalary, taxYear, isScotland);
     
     let tax = 0;
@@ -255,7 +257,9 @@ function calculateNetPay(formData) {
     const adjustedGrossSalary = annualGrossSalary - annualPensionContribution;
     
     // Calculate deductions
+    console.log('Debug: isScotland =', isScotland, 'taxYear =', taxYear);
     const incomeTax = calculateIncomeTax(adjustedGrossSalary, taxYear, isScotland);
+    console.log('Income Tax calculated:', incomeTax);
     const nationalInsurance = calculateNationalInsurance(adjustedGrossSalary, taxYear, ageGroup);
     const studentLoanRepayment = calculateStudentLoanRepayment(adjustedGrossSalary, studentLoanPlan);
     
