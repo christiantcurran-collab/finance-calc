@@ -180,50 +180,9 @@
                     </p>
                 </div>
 
-                <div class="tips-grid" style="margin-top: 2rem;">
-                    <div class="tip-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>10th Percentile (Pessimistic)</h3>
-                        <p>Only 10% of outcomes would be worse than this. Represents a scenario with below-average growth or market downturns.</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-balance-scale"></i>
-                        <h3>50th Percentile (Median)</h3>
-                        <p>The middle scenario - half of outcomes would be better, half worse. Most likely outcome based on historical data.</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-arrow-trend-up"></i>
-                        <h3>90th Percentile (Optimistic)</h3>
-                        <p>Only 10% of outcomes would be better than this. Represents strong market growth over the period.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="calculator-card">
-            <div class="info-section">
-                <h2><i class="fas fa-lightbulb"></i> Important Considerations</h2>
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Past Performance</h3>
-                        <p>Historical data doesn't guarantee future results. Property markets can be affected by economic conditions, interest rates, and local factors.</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Location Matters</h3>
-                        <p>This projection uses UK-wide averages. Actual growth varies significantly by region, city, and neighborhood.</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-tools"></i>
-                        <h3>Property Condition</h3>
-                        <p>Maintenance, improvements, and property condition significantly impact value. This projection assumes average upkeep.</p>
-                    </div>
-                    <div class="tip-card">
-                        <i class="fas fa-coins"></i>
-                        <h3>Costs Not Included</h3>
-                        <p>This doesn't account for mortgage interest, maintenance costs, insurance, or transaction fees when buying/selling.</p>
-                    </div>
+                <div id="equityChartSection" style="margin-top: 2rem; background: white; padding: 2rem; border-radius: 8px;">
+                    <h3 style="margin-bottom: 1rem;"><i class="fas fa-chart-area"></i> Equity Growth Over Time</h3>
+                    <canvas id="equityChart"></canvas>
                 </div>
             </div>
         </div>

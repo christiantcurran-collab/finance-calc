@@ -25,6 +25,7 @@ const PROJECTION_DATA = [
 ];
 
 let projectionChart = null;
+let equityChart = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('projectorForm');
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display results
         displayResults(propertyValue, deposit, projections);
         createChart(propertyValue);
+        createEquityChart(propertyValue, deposit);
     }
 
     function displayResults(initialValue, deposit, projections) {
@@ -247,6 +249,152 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: {
                             display: true,
                             text: 'Property Value (£)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '£' + value.toLocaleString('en-GB', {
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                });
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+    }
+
+    function createEquityChart(initialValue, deposit) {
+        const ctx = document.getElementById('equityChart');
+
+        // Destroy existing chart if it exists
+        if (equityChart) {
+            equityChart.destroy();
+        }
+
+        const mortgageBalance = initialValue - deposit;
+
+        // Prepare equity data for chart (5 years only)
+        const fiveYearData = PROJECTION_DATA.slice(0, 5);
+        const years = [0, ...fiveYearData.map(d => d.year)];
+        const p10Equity = [deposit, ...fiveYearData.map(d => (initialValue * d.p10) - mortgageBalance)];
+        const p25Equity = [deposit, ...fiveYearData.map(d => (initialValue * d.p25) - mortgageBalance)];
+        const p50Equity = [deposit, ...fiveYearData.map(d => (initialValue * d.p50) - mortgageBalance)];
+        const p75Equity = [deposit, ...fiveYearData.map(d => (initialValue * d.p75) - mortgageBalance)];
+        const p90Equity = [deposit, ...fiveYearData.map(d => (initialValue * d.p90) - mortgageBalance)];
+
+        // Create funnel chart for equity
+        equityChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    {
+                        label: '90th Percentile (Optimistic)',
+                        data: p90Equity,
+                        borderColor: '#1a6b5c',
+                        backgroundColor: 'rgba(26, 107, 92, 0.1)',
+                        borderWidth: 2,
+                        fill: '+1',
+                        tension: 0.4
+                    },
+                    {
+                        label: '75th Percentile',
+                        data: p75Equity,
+                        borderColor: '#2a8b7c',
+                        backgroundColor: 'rgba(42, 139, 124, 0.15)',
+                        borderWidth: 2,
+                        fill: '+1',
+                        tension: 0.4
+                    },
+                    {
+                        label: '50th Percentile (Median)',
+                        data: p50Equity,
+                        borderColor: '#3aab9c',
+                        backgroundColor: 'rgba(58, 171, 156, 0.2)',
+                        borderWidth: 3,
+                        fill: '+1',
+                        tension: 0.4
+                    },
+                    {
+                        label: '25th Percentile',
+                        data: p25Equity,
+                        borderColor: '#6bcbbc',
+                        backgroundColor: 'rgba(107, 203, 188, 0.15)',
+                        borderWidth: 2,
+                        fill: '+1',
+                        tension: 0.4
+                    },
+                    {
+                        label: '10th Percentile (Pessimistic)',
+                        data: p10Equity,
+                        borderColor: '#9cebdc',
+                        backgroundColor: 'rgba(156, 235, 220, 0.1)',
+                        borderWidth: 2,
+                        fill: 'origin',
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '5-Year Equity Projection Range',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += '£' + context.parsed.y.toLocaleString('en-GB', {
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                });
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Years from Now'
+                        },
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Equity Value (£)'
                         },
                         ticks: {
                             callback: function(value) {
