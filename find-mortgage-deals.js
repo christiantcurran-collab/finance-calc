@@ -140,9 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
                         ${deal.features}
                     </div>
-                    <button class="view-deal-btn" onclick="alert('This would link to the lender\\'s website or a broker service')">
-                        <i class="fas fa-external-link-alt"></i> View Deal
-                    </button>
                 </div>
             </div>
         `).join('');
