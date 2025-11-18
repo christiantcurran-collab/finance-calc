@@ -143,21 +143,62 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = modalOverlay.querySelector('#emailSignupForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = form.querySelector('.email-input').value;
+            const emailInput = form.querySelector('.email-input');
+            const email = emailInput.value;
+            const submitBtn = form.querySelector('.email-submit-btn');
             
-            // Show success message
-            form.innerHTML = `
-                <div class="email-success">
-                    <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;"></i>
-                    <h3>Thanks for subscribing!</h3>
-                    <p>We'll send you our weekly updates at ${email}</p>
-                </div>
-            `;
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
             
-            // Close modal after 3 seconds
-            setTimeout(function() {
-                closeEmailModal(modalOverlay);
-            }, 3000);
+            // Mailchimp JSONP endpoint
+            const mailchimpUrl = 'https://quidwise.us18.list-manage.com/subscribe/post-json?u=e025cbf9df423e6bfc42642a1&id=158f4d7246&f_id=00cdabe6f0';
+            
+            // Create script element for JSONP
+            const script = document.createElement('script');
+            const callbackName = 'mailchimpCallback' + Date.now();
+            
+            // Define callback function
+            window[callbackName] = function(data) {
+                // Clean up
+                delete window[callbackName];
+                document.body.removeChild(script);
+                
+                if (data.result === 'success') {
+                    // Show success message
+                    form.innerHTML = `
+                        <div class="email-success">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;"></i>
+                            <h3>Thanks for subscribing!</h3>
+                            <p>We'll send you our weekly updates at ${email}</p>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Check your inbox to confirm your subscription.</p>
+                        </div>
+                    `;
+                    
+                    // Close modal after 4 seconds
+                    setTimeout(function() {
+                        closeEmailModal(modalOverlay);
+                    }, 4000);
+                } else {
+                    // Show error message
+                    let errorMsg = data.msg || 'Something went wrong. Please try again.';
+                    // Clean up Mailchimp's HTML in error messages
+                    errorMsg = errorMsg.replace(/<[^>]*>/g, '');
+                    
+                    form.innerHTML = `
+                        <div class="email-error" style="text-align: center; padding: 2rem 0;">
+                            <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                            <h3 style="color: #dc3545;">Oops!</h3>
+                            <p style="color: #666;">${errorMsg}</p>
+                            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer;">Try Again</button>
+                        </div>
+                    `;
+                }
+            };
+            
+            // Build JSONP URL with callback
+            script.src = mailchimpUrl + '&EMAIL=' + encodeURIComponent(email) + '&c=' + callbackName;
+            document.body.appendChild(script);
         });
     }
     
