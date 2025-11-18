@@ -889,6 +889,14 @@ footer {
     gap: 0.5rem;
 }
 
+.rates-table {
+    overflow-x: auto;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
 .subsection-title {
     font-size: 1.2rem;
     color: var(--primary-color);
@@ -908,6 +916,51 @@ footer {
     border-collapse: collapse;
     background: white;
     font-size: 0.95rem;
+    margin: 1rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table thead {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+}
+
+.comparison-table thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: white;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    font-size: 0.9rem;
+}
+
+.comparison-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--bg-light);
+}
+
+.comparison-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.comparison-table tbody td {
+    padding: 1rem;
+    color: var(--text-dark);
+}
+
+.comparison-table tbody td:first-child {
+    font-weight: 600;
+}
+
+.comparison-table .rate-cell {
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 1.05rem;
 }
 
 .hl-table thead {

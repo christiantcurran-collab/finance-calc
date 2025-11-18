@@ -301,38 +301,6 @@ function displayResults(results, isAnnual, hasPension, hasStudentLoan) {
     document.getElementById('netPayAmount').textContent = formatCurrency(displayAmount);
     document.getElementById('netPayPeriod').textContent = periodText;
     
-    // Update breakdown
-    document.getElementById('grossSalary').textContent = formatCurrency(results.annualGross);
-    
-    // Show/hide pension row
-    const pensionRow = document.getElementById('pensionRow');
-    const adjustedGrossRow = document.getElementById('adjustedGrossRow');
-    
-    if (hasPension && results.pensionContribution > 0) {
-        pensionRow.style.display = 'flex';
-        adjustedGrossRow.style.display = 'flex';
-        document.getElementById('pensionAmount').textContent = '-' + formatCurrency(results.pensionContribution);
-        document.getElementById('adjustedGrossSalary').textContent = formatCurrency(results.adjustedGross);
-    } else {
-        pensionRow.style.display = 'none';
-        adjustedGrossRow.style.display = 'flex';
-        document.getElementById('adjustedGrossSalary').textContent = formatCurrency(results.adjustedGross);
-    }
-    
-    document.getElementById('incomeTax').textContent = '-' + formatCurrency(results.incomeTax);
-    document.getElementById('nationalInsurance').textContent = '-' + formatCurrency(results.nationalInsurance);
-    
-    // Show/hide student loan row
-    const studentLoanRow = document.getElementById('studentLoanRow');
-    if (hasStudentLoan && results.studentLoanRepayment > 0) {
-        studentLoanRow.style.display = 'flex';
-        document.getElementById('studentLoanRepayment').textContent = '-' + formatCurrency(results.studentLoanRepayment);
-    } else {
-        studentLoanRow.style.display = 'none';
-    }
-    
-    document.getElementById('netPay').textContent = formatCurrency(results.annualNet);
-    
     // Populate the table breakdown
     document.getElementById('tableGrossAnnual').textContent = formatCurrency(results.annualGross);
     document.getElementById('tableGrossMonthly').textContent = formatCurrency(results.monthlyGross);
@@ -379,16 +347,6 @@ function displayResults(results, isAnnual, hasPension, hasStudentLoan) {
     document.getElementById('tableNetAnnual').innerHTML = '<strong>' + formatCurrency(results.annualNet) + '</strong>';
     document.getElementById('tableNetMonthly').innerHTML = '<strong>' + formatCurrency(results.monthlyNet) + '</strong>';
     document.getElementById('tableNetWeekly').innerHTML = '<strong>' + formatCurrency(results.annualNet / 52) + '</strong>';
-    
-    // Update monthly breakdown
-    const monthlyBreakdown = document.getElementById('monthlyBreakdown');
-    if (isAnnual) {
-        monthlyBreakdown.style.display = 'block';
-        document.getElementById('monthlyGross').textContent = formatCurrency(results.monthlyGross);
-        document.getElementById('monthlyNet').textContent = formatCurrency(results.monthlyNet);
-    } else {
-        monthlyBreakdown.style.display = 'none';
-    }
     
     // Show mortgage affordability quick view
     const mortgageAffordability = document.getElementById('mortgageAffordability');
