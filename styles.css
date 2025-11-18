@@ -1947,7 +1947,8 @@ footer {
     margin-bottom: 2rem;
 }
 
-.summary-card {
+/* Budget Planner Summary Cards */
+.budget-summary-cards .summary-card {
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
@@ -1959,20 +1960,20 @@ footer {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.summary-card:hover {
+.budget-summary-cards .summary-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.income-card {
+.budget-summary-cards .income-card {
     border-top-color: var(--success-color);
 }
 
-.expense-card {
+.budget-summary-cards .expense-card {
     border-top-color: var(--primary-color);
 }
 
-.balance-card {
+.budget-summary-cards .balance-card {
     border-top-color: var(--primary-color);
 }
 
