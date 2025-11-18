@@ -396,9 +396,11 @@ function displayResults(results, isAnnual, hasPension, hasStudentLoan) {
     // Set up links with income parameter
     const mortgageAffordabilityLink = document.getElementById('mortgageAffordabilityLink');
     const budgetPlannerLink = document.getElementById('budgetPlannerLink');
+    const whatsNextSection = document.getElementById('whatsNextSection');
     
     mortgageAffordabilityLink.href = `mortgage-affordability.html?income=${Math.round(annualIncome)}`;
     budgetPlannerLink.href = `budget-planner.html?income=${Math.round(results.monthlyNet)}`;
+    whatsNextSection.style.display = 'block';
     
     // Smooth scroll to results
     setTimeout(() => {
