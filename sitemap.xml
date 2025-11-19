@@ -68,20 +68,6 @@
   </url>
   
   <url>
-    <loc>https://www.quidwise.co.uk/isa-platforms.html</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.quidwise.co.uk/best-savings-rates.html</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>https://www.quidwise.co.uk/broadband-tv.html</loc>
     <lastmod>2025-11-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -97,20 +83,6 @@
   
   <url>
     <loc>https://www.quidwise.co.uk/mobile.html</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.quidwise.co.uk/credit-cards.html</loc>
-    <lastmod>2025-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.quidwise.co.uk/loans.html</loc>
     <lastmod>2025-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
