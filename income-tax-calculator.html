@@ -464,6 +464,19 @@
             </div>
         </div>
 
+        <!-- Weekly Email Signup -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <div class="info-box" style="background: linear-gradient(135deg, rgba(26, 107, 92, 0.1) 0%, rgba(42, 139, 124, 0.1) 100%); text-align: center;">
+                <div>
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">Stay Updated with Our Weekly Newsletter</h3>
+                    <p style="margin-bottom: 1rem;">Get the latest UK personal finance tips, calculator updates, and money-saving insights delivered to your inbox every week.</p>
+                    <button id="footerEmailSignupBtn" class="calculate-btn" style="cursor: pointer;">
+                        <i class="fas fa-envelope"></i> Sign Up for Free
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <div class="footer-content">
                 <p class="disclaimer">
@@ -487,5 +500,17 @@
 
     <script src="script.js"></script>
     <script src="navigation.js"></script>
+    <script>
+        // Add event listener for footer email signup button
+        document.addEventListener('DOMContentLoaded', function() {
+            const footerSignupBtn = document.getElementById('footerEmailSignupBtn');
+            if (footerSignupBtn) {
+                footerSignupBtn.addEventListener('click', function() {
+                    // Trigger the same modal as the nav button
+                    document.getElementById('emailSignupBtn').click();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
