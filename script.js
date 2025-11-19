@@ -241,6 +241,8 @@ function calculateNetPay(formData) {
         pensionType,
         pensionPercentage,
         pensionAmount,
+        hasChildcareVouchers,
+        childcareVouchersAmount,
         studentLoanPlan
     } = formData;
     
@@ -263,8 +265,14 @@ function calculateNetPay(formData) {
         }
     }
     
-    // Calculate adjusted gross salary (after salary sacrifice pension)
-    const adjustedGrossSalary = annualGrossSalary - annualPensionContribution;
+    // Calculate annual childcare vouchers (salary sacrifice)
+    let annualChildcareVouchers = 0;
+    if (hasChildcareVouchers) {
+        annualChildcareVouchers = childcareVouchersAmount * 12;
+    }
+    
+    // Calculate adjusted gross salary (after salary sacrifice: pension + childcare vouchers)
+    const adjustedGrossSalary = annualGrossSalary - annualPensionContribution - annualChildcareVouchers;
     
     // Calculate deductions
     console.log('Debug: isScotland =', isScotland, 'taxYear =', taxYear);
@@ -279,6 +287,7 @@ function calculateNetPay(formData) {
     return {
         annualGross: annualGrossSalary,
         pensionContribution: annualPensionContribution,
+        childcareVouchers: annualChildcareVouchers,
         adjustedGross: adjustedGrossSalary,
         incomeTax: incomeTax,
         nationalInsurance: nationalInsurance,
@@ -290,7 +299,7 @@ function calculateNetPay(formData) {
 }
 
 // Display results
-function displayResults(results, isAnnual, hasPension, hasStudentLoan) {
+function displayResults(results, isAnnual, hasPension, hasChildcareVouchers, hasStudentLoan) {
     const resultsSection = document.getElementById('results');
     resultsSection.style.display = 'block';
     
@@ -307,24 +316,34 @@ function displayResults(results, isAnnual, hasPension, hasStudentLoan) {
     document.getElementById('tableGrossWeekly').textContent = formatCurrency(results.annualGross / 52);
     
     const tablePensionRow = document.getElementById('tablePensionRow');
+    const tableChildcareRow = document.getElementById('tableChildcareRow');
     const tableAdjustedRow = document.getElementById('tableAdjustedRow');
     
+    // Show/hide pension row
     if (hasPension && results.pensionContribution > 0) {
         tablePensionRow.style.display = 'table-row';
-        tableAdjustedRow.style.display = 'table-row';
         document.getElementById('tablePensionAnnual').textContent = '-' + formatCurrency(results.pensionContribution);
         document.getElementById('tablePensionMonthly').textContent = '-' + formatCurrency(results.pensionContribution / 12);
         document.getElementById('tablePensionWeekly').textContent = '-' + formatCurrency(results.pensionContribution / 52);
-        document.getElementById('tableAdjustedAnnual').innerHTML = '<strong>' + formatCurrency(results.adjustedGross) + '</strong>';
-        document.getElementById('tableAdjustedMonthly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 12) + '</strong>';
-        document.getElementById('tableAdjustedWeekly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 52) + '</strong>';
     } else {
         tablePensionRow.style.display = 'none';
-        tableAdjustedRow.style.display = 'table-row';
-        document.getElementById('tableAdjustedAnnual').innerHTML = '<strong>' + formatCurrency(results.adjustedGross) + '</strong>';
-        document.getElementById('tableAdjustedMonthly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 12) + '</strong>';
-        document.getElementById('tableAdjustedWeekly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 52) + '</strong>';
     }
+    
+    // Show/hide childcare vouchers row
+    if (hasChildcareVouchers && results.childcareVouchers > 0) {
+        tableChildcareRow.style.display = 'table-row';
+        document.getElementById('tableChildcareAnnual').textContent = '-' + formatCurrency(results.childcareVouchers);
+        document.getElementById('tableChildcareMonthly').textContent = '-' + formatCurrency(results.childcareVouchers / 12);
+        document.getElementById('tableChildcareWeekly').textContent = '-' + formatCurrency(results.childcareVouchers / 52);
+    } else {
+        tableChildcareRow.style.display = 'none';
+    }
+    
+    // Always show adjusted gross row
+    tableAdjustedRow.style.display = 'table-row';
+    document.getElementById('tableAdjustedAnnual').innerHTML = '<strong>' + formatCurrency(results.adjustedGross) + '</strong>';
+    document.getElementById('tableAdjustedMonthly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 12) + '</strong>';
+    document.getElementById('tableAdjustedWeekly').innerHTML = '<strong>' + formatCurrency(results.adjustedGross / 52) + '</strong>';
     
     document.getElementById('tableTaxAnnual').textContent = '-' + formatCurrency(results.incomeTax);
     document.getElementById('tableTaxMonthly').textContent = '-' + formatCurrency(results.incomeTax / 12);
@@ -382,6 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const pensionTypeRadios = document.querySelectorAll('input[name="pensionType"]');
     const pensionPercentageGroup = document.getElementById('pensionPercentageGroup');
     const pensionAmountGroup = document.getElementById('pensionAmountGroup');
+    const hasChildcareVouchersCheckbox = document.getElementById('hasChildcareVouchers');
+    const childcareVouchersInputs = document.getElementById('childcareVouchersInputs');
     const studentLoanSelect = document.getElementById('studentLoanPlan');
     const studentLoanInfo = document.getElementById('studentLoanInfo');
     const studentLoanText = document.getElementById('studentLoanText');
@@ -389,6 +410,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggle pension inputs
     hasPensionCheckbox.addEventListener('change', function() {
         pensionInputs.style.display = this.checked ? 'block' : 'none';
+    });
+    
+    // Toggle childcare vouchers inputs
+    hasChildcareVouchersCheckbox.addEventListener('change', function() {
+        childcareVouchersInputs.style.display = this.checked ? 'block' : 'none';
     });
     
     // Toggle pension type (percentage vs amount)
@@ -429,6 +455,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const pensionType = document.querySelector('input[name="pensionType"]:checked').value;
         const pensionPercentage = parseFloat(document.getElementById('pensionPercentage').value) || 0;
         const pensionAmount = parseFloat(document.getElementById('pensionAmount').value) || 0;
+        const hasChildcareVouchers = document.getElementById('hasChildcareVouchers').checked;
+        const childcareVouchersAmount = parseFloat(document.getElementById('childcareVouchersAmount').value) || 0;
         const studentLoanPlan = studentLoanSelect.value;
         
         // Validate inputs
@@ -459,6 +487,8 @@ document.addEventListener('DOMContentLoaded', function() {
             pensionType,
             pensionPercentage,
             pensionAmount,
+            hasChildcareVouchers,
+            childcareVouchersAmount,
             studentLoanPlan
         };
         
@@ -466,6 +496,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const results = calculateNetPay(formData);
         
         // Display results (always annual now)
-        displayResults(results, true, hasPension, studentLoanPlan !== 'none');
+        displayResults(results, true, hasPension, hasChildcareVouchers, studentLoanPlan !== 'none');
     });
 });

@@ -276,6 +276,43 @@
                     </div>
                 </div>
 
+                <!-- Childcare Vouchers Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-child section-icon"></i>
+                        <h2>Childcare Vouchers</h2>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hasChildcareVouchers" name="hasChildcareVouchers">
+                            <span><i class="fas fa-baby-carriage"></i> I receive childcare vouchers (salary sacrifice)</span>
+                        </label>
+                    </div>
+
+                    <div id="childcareVouchersInputs" style="display: none;">
+                        <div class="input-group">
+                            <label for="childcareVouchersAmount">
+                                <i class="fas fa-pound-sign"></i> Monthly Childcare Vouchers Amount
+                            </label>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input 
+                                    type="number" 
+                                    id="childcareVouchersAmount" 
+                                    name="childcareVouchersAmount" 
+                                    placeholder="e.g., 243"
+                                    min="0"
+                                    max="243"
+                                    step="0.01"
+                                    value="243"
+                                >
+                            </div>
+                            <p class="help-text">Maximum: £243/month (£55/week) for basic rate taxpayers. Reduces taxable income and NI.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Student Loan Section -->
                 <div class="form-section">
                     <div class="section-header">
@@ -349,6 +386,12 @@
                                     <td id="tablePensionAnnual" class="negative">-£0</td>
                                     <td id="tablePensionMonthly" class="negative">-£0</td>
                                     <td id="tablePensionWeekly" class="negative">-£0</td>
+                                </tr>
+                                <tr id="tableChildcareRow" style="display: none;">
+                                    <td><i class="fas fa-child"></i> Childcare Vouchers</td>
+                                    <td id="tableChildcareAnnual" class="negative">-£0</td>
+                                    <td id="tableChildcareMonthly" class="negative">-£0</td>
+                                    <td id="tableChildcareWeekly" class="negative">-£0</td>
                                 </tr>
                                 <tr class="subtotal-row" id="tableAdjustedRow">
                                     <td><strong>Adjusted Gross</strong></td>
