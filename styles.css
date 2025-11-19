@@ -1102,7 +1102,7 @@ footer {
 }
 
 .blog-content {
-    padding: 1.5rem;
+    padding: 2.5rem;
 }
 
 .blog-meta {
@@ -1742,6 +1742,10 @@ footer {
 
     .calculator-card {
         padding: 1rem;
+    }
+    
+    .blog-content {
+        padding: 1.5rem 1.25rem;
     }
 
     .radio-group {
