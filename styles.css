@@ -2106,3 +2106,212 @@ footer {
     }
 }
 
+/* Homepage Refinement Styles */
+.home-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.home-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.home-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.home-section {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.compact-tool-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.compact-tool-list li {
+    margin-bottom: 0.75rem;
+}
+
+.compact-tool-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.compact-tool-list a:hover {
+    background: rgba(26, 107, 92, 0.1);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.compact-tool-list a i {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+
+/* Latest Blog Section */
+.latest-blog-section {
+    margin-bottom: 3rem;
+}
+
+.featured-blog-card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.featured-blog-link {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    text-decoration: none;
+    color: inherit;
+}
+
+.featured-blog-image {
+    height: 100%;
+    overflow: hidden;
+}
+
+.featured-blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.featured-blog-card:hover .featured-blog-image img {
+    transform: scale(1.05);
+}
+
+.featured-blog-content {
+    padding: 2rem;
+}
+
+.featured-blog-content .blog-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+}
+
+.featured-blog-content h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.featured-blog-content p {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: gap 0.2s ease;
+}
+
+.featured-blog-card:hover .read-more-btn {
+    gap: 0.75rem;
+}
+
+.view-all-blogs-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.view-all-blogs-link:hover {
+    background: var(--primary-color);
+    color: white;
+    gap: 0.75rem;
+}
+
+/* Mobile Responsive for Homepage */
+@media (max-width: 768px) {
+    .home-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .home-tools-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .home-section {
+        padding: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .featured-blog-link {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-blog-image {
+        height: 200px;
+    }
+    
+    .featured-blog-content {
+        padding: 1.5rem;
+    }
+    
+    .featured-blog-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .view-all-blogs-link {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
