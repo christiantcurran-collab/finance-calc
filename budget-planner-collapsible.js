@@ -52,45 +52,116 @@ function collectBudgetData() {
     return data;
 }
 
-function downloadPremiumExcel(data) {
-    // Create workbook with QuidWise branding
-    const wb = XLSX.utils.book_new();
+async function downloadPremiumExcel(data) {
+    // Create new workbook with ExcelJS
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Budget', {
+        properties: { tabColor: { argb: '1A6B5C' } }
+    });
     
-    // Define QuidWise colors
-    const primaryColor = { rgb: "1A6B5C" };
-    const lightGreen = { rgb: "E8F5F3" };
-    const white = { rgb: "FFFFFF" };
-    
-    // Create header rows
-    const headerData = [
-        ['QuidWise Budget Planner'],
-        ['Your Personal Monthly Budget'],
-        ['Generated: ' + new Date().toLocaleDateString('en-GB')],
-        [],
-        []
+    // Set column widths
+    worksheet.columns = [
+        { width: 45 },
+        { width: 18 }
     ];
     
-    // Income section
-    const incomeData = [
-        ['INCOME', 'Amount (£)'],
+    // QuidWise Colors
+    const primaryGreen = '1A6B5C';
+    const lightGreen = 'E8F5F3';
+    const darkGreen = '155448';
+    const white = 'FFFFFF';
+    const lightGray = 'F5F5F5';
+    const orange = 'FF9800';
+    const red = 'E74C3C';
+    
+    // ========== HEADER SECTION ==========
+    worksheet.mergeCells('A1:B1');
+    const titleRow = worksheet.getRow(1);
+    titleRow.height = 30;
+    titleRow.getCell(1).value = 'QuidWise Budget Planner';
+    titleRow.getCell(1).font = { name: 'Calibri', size: 20, bold: true, color: { argb: white } };
+    titleRow.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: primaryGreen } };
+    titleRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
+    
+    worksheet.mergeCells('A2:B2');
+    const subtitleRow = worksheet.getRow(2);
+    subtitleRow.height = 22;
+    subtitleRow.getCell(1).value = 'Your Personal Monthly Budget';
+    subtitleRow.getCell(1).font = { name: 'Calibri', size: 14, italic: true, color: { argb: primaryGreen } };
+    subtitleRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
+    
+    worksheet.mergeCells('A3:B3');
+    const dateRow = worksheet.getRow(3);
+    dateRow.getCell(1).value = 'Generated: ' + new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+    dateRow.getCell(1).font = { name: 'Calibri', size: 11, color: { argb: '666666' } };
+    dateRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
+    
+    let currentRow = 5;
+    
+    // ========== INCOME SECTION ==========
+    const incomeHeaderRow = worksheet.getRow(currentRow);
+    incomeHeaderRow.height = 25;
+    incomeHeaderRow.getCell(1).value = 'INCOME';
+    incomeHeaderRow.getCell(2).value = 'Amount (£)';
+    incomeHeaderRow.font = { name: 'Calibri', size: 12, bold: true, color: { argb: white } };
+    incomeHeaderRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: darkGreen } };
+    incomeHeaderRow.alignment = { vertical: 'middle', horizontal: 'left' };
+    incomeHeaderRow.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+    });
+    currentRow++;
+    
+    // Income items
+    const incomeItems = [
         ['Income from Employment', data.income.incomeEmployment || 0],
         ['Income from Pension', data.income.incomePension || 0],
         ['Income from Benefits', data.income.incomeBenefits || 0],
-        ['Other Income', data.income.incomeOther || 0],
-        [],
-        ['TOTAL INCOME', (data.income.incomeEmployment || 0) + (data.income.incomePension || 0) + (data.income.incomeBenefits || 0) + (data.income.incomeOther || 0)]
+        ['Other Income', data.income.incomeOther || 0]
     ];
     
-    // Expenses by category
-    const expenseData = [
-        [],
-        ['EXPENSES BY CATEGORY', 'Amount (£)'],
-        []
-    ];
+    incomeItems.forEach(([label, value]) => {
+        const row = worksheet.getRow(currentRow);
+        row.getCell(1).value = label;
+        row.getCell(2).value = value;
+        row.getCell(2).numFmt = '£#,##0.00';
+        row.getCell(1).font = { name: 'Calibri', size: 11 };
+        row.getCell(2).font = { name: 'Calibri', size: 11 };
+        row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: lightGray } };
+        row.eachCell(cell => {
+            cell.border = { left: { style: 'thin' }, right: { style: 'thin' } };
+        });
+        currentRow++;
+    });
     
-    // Add all expense categories
+    // Total Income
+    currentRow++;
+    const totalIncomeRow = worksheet.getRow(currentRow);
+    totalIncomeRow.height = 22;
+    const totalIncome = (data.income.incomeEmployment || 0) + (data.income.incomePension || 0) + (data.income.incomeBenefits || 0) + (data.income.incomeOther || 0);
+    totalIncomeRow.getCell(1).value = 'TOTAL INCOME';
+    totalIncomeRow.getCell(2).value = totalIncome;
+    totalIncomeRow.getCell(2).numFmt = '£#,##0.00';
+    totalIncomeRow.font = { name: 'Calibri', size: 12, bold: true, color: { argb: white } };
+    totalIncomeRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: primaryGreen } };
+    totalIncomeRow.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+    });
+    currentRow += 3;
+    
+    // ========== EXPENSES SECTION ==========
+    const expenseHeaderRow = worksheet.getRow(currentRow);
+    expenseHeaderRow.height = 25;
+    expenseHeaderRow.getCell(1).value = 'EXPENSES BY CATEGORY';
+    expenseHeaderRow.getCell(2).value = 'Amount (£)';
+    expenseHeaderRow.font = { name: 'Calibri', size: 12, bold: true, color: { argb: white } };
+    expenseHeaderRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: darkGreen } };
+    expenseHeaderRow.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+    });
+    currentRow += 2;
+    
+    // Process expense categories
     const categories = ['Home', 'Insurance', 'Transport', 'Loan Repayments', 'Food & Drink', 'Family', 'Entertainment', 'Health', 'Clothes', 'Education', 'Other'];
-    
     let totalExpenses = 0;
     
     categories.forEach(category => {
@@ -107,48 +178,122 @@ function downloadPremiumExcel(data) {
         });
         
         if (categoryTotal > 0) {
-            expenseData.push([category, '']);
-            categoryExpenses.forEach(([label, value]) => {
-                expenseData.push(['  ' + label, value]);
+            // Category header
+            const catRow = worksheet.getRow(currentRow);
+            catRow.height = 20;
+            catRow.getCell(1).value = category;
+            catRow.font = { name: 'Calibri', size: 11, bold: true, color: { argb: primaryGreen } };
+            catRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: lightGreen } };
+            catRow.eachCell(cell => {
+                cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
             });
-            expenseData.push(['Subtotal', categoryTotal]);
-            expenseData.push([]);
+            currentRow++;
+            
+            // Category items
+            categoryExpenses.forEach(([label, value]) => {
+                const row = worksheet.getRow(currentRow);
+                row.getCell(1).value = '  ' + label;
+                row.getCell(2).value = value;
+                row.getCell(2).numFmt = '£#,##0.00';
+                row.getCell(1).font = { name: 'Calibri', size: 10 };
+                row.getCell(2).font = { name: 'Calibri', size: 10 };
+                row.eachCell(cell => {
+                    cell.border = { left: { style: 'thin' }, right: { style: 'thin' } };
+                });
+                currentRow++;
+            });
+            
+            // Subtotal
+            const subtotalRow = worksheet.getRow(currentRow);
+            subtotalRow.getCell(1).value = 'Subtotal';
+            subtotalRow.getCell(2).value = categoryTotal;
+            subtotalRow.getCell(2).numFmt = '£#,##0.00';
+            subtotalRow.font = { name: 'Calibri', size: 10, bold: true };
+            subtotalRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: lightGreen } };
+            subtotalRow.eachCell(cell => {
+                cell.border = { bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+            });
+            currentRow += 2;
+            
             totalExpenses += categoryTotal;
         }
     });
     
-    expenseData.push(['TOTAL EXPENSES', totalExpenses]);
-    expenseData.push([]);
+    // Total Expenses
+    const totalExpenseRow = worksheet.getRow(currentRow);
+    totalExpenseRow.height = 22;
+    totalExpenseRow.getCell(1).value = 'TOTAL EXPENSES';
+    totalExpenseRow.getCell(2).value = totalExpenses;
+    totalExpenseRow.getCell(2).numFmt = '£#,##0.00';
+    totalExpenseRow.font = { name: 'Calibri', size: 12, bold: true, color: { argb: white } };
+    totalExpenseRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: orange } };
+    totalExpenseRow.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+    });
+    currentRow += 3;
     
-    // Summary
-    const totalIncome = (data.income.incomeEmployment || 0) + (data.income.incomePension || 0) + (data.income.incomeBenefits || 0) + (data.income.incomeOther || 0);
+    // ========== SUMMARY SECTION ==========
+    const summaryHeaderRow = worksheet.getRow(currentRow);
+    summaryHeaderRow.height = 25;
+    summaryHeaderRow.getCell(1).value = 'SUMMARY';
+    summaryHeaderRow.getCell(2).value = 'Amount (£)';
+    summaryHeaderRow.font = { name: 'Calibri', size: 12, bold: true, color: { argb: white } };
+    summaryHeaderRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: darkGreen } };
+    summaryHeaderRow.eachCell(cell => {
+        cell.border = { top: { style: 'medium' }, bottom: { style: 'thin' }, left: { style: 'medium' }, right: { style: 'medium' } };
+    });
+    currentRow++;
+    
+    // Summary items
+    const summaryItems = [
+        ['Total Income', totalIncome, primaryGreen],
+        ['Total Expenses', totalExpenses, orange]
+    ];
+    
+    summaryItems.forEach(([label, value, color]) => {
+        const row = worksheet.getRow(currentRow);
+        row.getCell(1).value = label;
+        row.getCell(2).value = value;
+        row.getCell(2).numFmt = '£#,##0.00';
+        row.font = { name: 'Calibri', size: 11, bold: true };
+        row.eachCell(cell => {
+            cell.border = { left: { style: 'medium' }, right: { style: 'medium' } };
+        });
+        currentRow++;
+    });
+    
+    // Remaining
     const remaining = totalIncome - totalExpenses;
+    const remainingRow = worksheet.getRow(currentRow);
+    remainingRow.height = 25;
+    remainingRow.getCell(1).value = 'Remaining';
+    remainingRow.getCell(2).value = remaining;
+    remainingRow.getCell(2).numFmt = '£#,##0.00';
+    remainingRow.font = { name: 'Calibri', size: 13, bold: true, color: { argb: white } };
+    remainingRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: remaining >= 0 ? primaryGreen : red } };
+    remainingRow.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'medium' }, left: { style: 'medium' }, right: { style: 'medium' } };
+    });
+    currentRow += 2;
     
-    const summaryData = [
-        ['SUMMARY', 'Amount (£)'],
-        ['Total Income', totalIncome],
-        ['Total Expenses', totalExpenses],
-        ['Remaining', remaining],
-        [],
-        [remaining >= 0 ? '✓ You have money left over!' : '⚠ You are overspending!', '']
-    ];
+    // Status message
+    worksheet.mergeCells(`A${currentRow}:B${currentRow}`);
+    const statusRow = worksheet.getRow(currentRow);
+    statusRow.height = 22;
+    statusRow.getCell(1).value = remaining >= 0 ? '✓ You have money left over!' : '⚠ You are overspending!';
+    statusRow.getCell(1).font = { name: 'Calibri', size: 12, bold: true, color: { argb: remaining >= 0 ? primaryGreen : red } };
+    statusRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
+    statusRow.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: remaining >= 0 ? lightGreen : 'FFEBEE' } };
+    statusRow.getCell(1).border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
     
-    // Combine all data
-    const allData = [...headerData, ...incomeData, ...expenseData, ...summaryData];
-    
-    // Create worksheet
-    const ws = XLSX.utils.aoa_to_sheet(allData);
-    
-    // Set column widths
-    ws['!cols'] = [
-        { wch: 40 },
-        { wch: 15 }
-    ];
-    
-    // Add worksheet to workbook
-    XLSX.utils.book_append_sheet(wb, ws, 'Budget');
-    
-    // Download file
-    XLSX.writeFile(wb, 'QuidWise_Budget_' + new Date().toISOString().split('T')[0] + '.xlsx');
+    // Generate Excel file
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'QuidWise_Budget_' + new Date().toISOString().split('T')[0] + '.xlsx';
+    link.click();
+    window.URL.revokeObjectURL(url);
 }
 
