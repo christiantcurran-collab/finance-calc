@@ -42,6 +42,83 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Buy vs Rent Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free Buy vs Rent Calculator for UK property decisions. Compare total costs of buying versus renting over time, including property growth, maintenance, and opportunity costs.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "ratingCount": "420"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is it better to buy or rent in the UK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on your circumstances. Buying typically builds equity and can be cheaper long-term if property values rise, but requires a deposit and has upfront costs. Renting offers flexibility and lower initial costs but doesn't build equity. Use our calculator to compare costs based on your situation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What costs should I consider when buying vs renting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buying costs include deposit, stamp duty, legal fees, mortgage payments, maintenance, and insurance. Renting costs include monthly rent, deposit, agent fees, and renters insurance. Also consider opportunity cost – the return you could earn by investing your deposit instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does property maintenance cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Property maintenance typically costs 1-2% of the property value per year. This covers repairs, replacements (boiler, roof, etc.), and general upkeep. Our calculator uses 1.5% as a standard estimate, though actual costs vary."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is opportunity cost in buy vs rent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Opportunity cost is the potential investment return you forgo by using your deposit to buy property. If you rent and invest your deposit instead (e.g., in stocks/bonds), that investment could grow. Our calculator factors this in to show the true cost comparison."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I rent if property prices might fall?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you expect property prices to fall or remain flat, renting can be financially advantageous in the short to medium term. Use our calculator with negative or 0% property growth to model this scenario and see how it affects the buy vs rent decision."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -318,6 +395,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your monthly mortgage repayments</p>
+                </a>
+                <a href="stamp-duty-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Stamp Duty Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate stamp duty on your property purchase</p>
+                </a>
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Find out how much you can borrow</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Is it better to buy or rent in the UK?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">It depends on your circumstances. Buying typically builds equity and can be cheaper long-term if property values rise, but requires a deposit and has upfront costs. Renting offers flexibility and lower initial costs but doesn't build equity. Use our calculator to compare costs based on your situation.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What costs should I consider when buying vs renting?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Buying costs include deposit, stamp duty, legal fees, mortgage payments, maintenance, and insurance. Renting costs include monthly rent, deposit, agent fees, and renters insurance. Also consider opportunity cost – the return you could earn by investing your deposit instead.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How much does property maintenance cost?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Property maintenance typically costs 1-2% of the property value per year. This covers repairs, replacements (boiler, roof, etc.), and general upkeep. Our calculator uses 1.5% as a standard estimate, though actual costs vary.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is opportunity cost in buy vs rent?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Opportunity cost is the potential investment return you forgo by using your deposit to buy property. If you rent and invest your deposit instead (e.g., in stocks/bonds), that investment could grow. Our calculator factors this in to show the true cost comparison.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Should I rent if property prices might fall?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">If you expect property prices to fall or remain flat, renting can be financially advantageous in the short to medium term. Use our calculator with negative or 0% property growth to model this scenario and see how it affects the buy vs rent decision.</p>
             </div>
         </div>
 

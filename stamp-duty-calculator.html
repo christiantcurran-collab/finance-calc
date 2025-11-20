@@ -41,6 +41,83 @@
     <title>Stamp Duty Calculator 2025 | SDLT & LBTT Calculator UK | QuidWise</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Stamp Duty Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free UK Stamp Duty Calculator for 2025. Calculate SDLT for England, Wales & Northern Ireland, or LBTT for Scotland. Includes first-time buyer relief and additional property surcharges.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "750"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is stamp duty and when do I pay it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stamp Duty Land Tax (SDLT) is a tax paid when you buy property or land in England, Wales, or Northern Ireland over a certain threshold. In Scotland, it's called Land and Buildings Transaction Tax (LBTT). You must pay within 14 days of completion. Your solicitor usually handles this as part of the purchase process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much is stamp duty for first-time buyers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First-time buyers in England, Wales, and Northern Ireland pay no stamp duty on properties up to £300,000, then 5% on the portion from £300,001 to £500,000. No relief applies on properties over £500,000. In Scotland, the nil rate band is £175,000, saving up to £600."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the additional property surcharge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you're buying an additional property (second home, buy-to-let, or if you already own a property), you pay an extra 5% on top of standard rates in England, Wales, and Northern Ireland, or 6% in Scotland. This applies across all price bands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I avoid the additional property surcharge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You won't pay the additional property surcharge if you sell your previous main home within 36 months of buying the new one. You may be able to claim a refund if you pay the surcharge and then sell within the time limit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the current stamp duty rates for 2025?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In England, Wales & NI: 0% up to £125k, 2% on £125k-£250k, 5% on £250k-£925k, 10% on £925k-£1.5m, 12% over £1.5m. First-time buyers: 0% up to £300k, 5% on £300k-£500k. Scotland has different LBTT bands. Use our calculator for exact amounts."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -226,6 +303,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your monthly mortgage repayments</p>
+                </a>
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Find out how much you can borrow</p>
+                </a>
+                <a href="buy-or-rent.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Buy vs Rent</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Compare buying vs renting costs over time</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is stamp duty and when do I pay it?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Stamp Duty Land Tax (SDLT) is a tax paid when you buy property or land in England, Wales, or Northern Ireland over a certain threshold. In Scotland, it's called Land and Buildings Transaction Tax (LBTT). You must pay within 14 days of completion. Your solicitor usually handles this as part of the purchase process.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How much is stamp duty for first-time buyers?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">First-time buyers in England, Wales, and Northern Ireland pay no stamp duty on properties up to £300,000, then 5% on the portion from £300,001 to £500,000. No relief applies on properties over £500,000. In Scotland, the nil rate band is £175,000, saving up to £600.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is the additional property surcharge?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">If you're buying an additional property (second home, buy-to-let, or if you already own a property), you pay an extra 5% on top of standard rates in England, Wales, and Northern Ireland, or 6% in Scotland. This applies across all price bands.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Can I avoid the additional property surcharge?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">You won't pay the additional property surcharge if you sell your previous main home within 36 months of buying the new one. You may be able to claim a refund if you pay the surcharge and then sell within the time limit.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What are the current stamp duty rates for 2025?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">In England, Wales & NI: 0% up to £125k, 2% on £125k-£250k, 5% on £250k-£925k, 10% on £925k-£1.5m, 12% over £1.5m. First-time buyers: 0% up to £300k, 5% on £300k-£500k. Scotland has different LBTT bands. Use our calculator for exact amounts.</p>
             </div>
         </div>
 

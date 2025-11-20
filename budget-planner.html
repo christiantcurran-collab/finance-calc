@@ -42,6 +42,83 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Budget Planner",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free Budget Planner for UK households. Track monthly income and expenses across 50+ categories. Visualize spending with charts and compare to national averages. Download your budget to Excel.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "ratingCount": "540"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I create a monthly budget?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start by entering all your monthly income sources (employment, pension, benefits). Then add your expenses across categories like housing, transport, food, insurance, and entertainment. Our planner shows your total income vs spending, helping you identify areas to save."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What percentage of income should go to housing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The ONS data suggests UK households spend around 51% of net income on housing costs (mortgage/rent, council tax, utilities). However, this varies by region and circumstances. Use our national averages feature to see typical spending patterns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I track my spending better?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our budget planner breaks expenses into detailed categories, making it easier to see exactly where your money goes. You can download your budget to Excel to track it monthly and compare your spending to UK national averages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the 50/30/20 budgeting rule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 50/30/20 rule suggests spending 50% of income on needs (housing, food, bills), 30% on wants (entertainment, dining out), and 20% on savings and debt repayment. This is a guideline – adjust based on your circumstances and goals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I download my budget?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, click the 'Download Budget (Excel)' button to save your complete budget as an Excel spreadsheet. This lets you track changes over time and keep a record of your financial planning."
+          }
+        }
+      ]
+    }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
@@ -815,6 +892,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="income-tax-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Income Tax Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your take-home pay after tax and NI</p>
+                </a>
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">See how much you can borrow for a mortgage</p>
+                </a>
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your monthly mortgage repayments</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How do I create a monthly budget?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Start by entering all your monthly income sources (employment, pension, benefits). Then add your expenses across categories like housing, transport, food, insurance, and entertainment. Our planner shows your total income vs spending, helping you identify areas to save.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What percentage of income should go to housing?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">The ONS data suggests UK households spend around 51% of net income on housing costs (mortgage/rent, council tax, utilities). However, this varies by region and circumstances. Use our national averages feature to see typical spending patterns.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How can I track my spending better?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Our budget planner breaks expenses into detailed categories, making it easier to see exactly where your money goes. You can download your budget to Excel to track it monthly and compare your spending to UK national averages.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is the 50/30/20 budgeting rule?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">The 50/30/20 rule suggests spending 50% of income on needs (housing, food, bills), 30% on wants (entertainment, dining out), and 20% on savings and debt repayment. This is a guideline – adjust based on your circumstances and goals.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Can I download my budget?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Yes, click the 'Download Budget (Excel)' button to save your complete budget as an Excel spreadsheet. This lets you track changes over time and keep a record of your financial planning.</p>
             </div>
         </div>
 

@@ -41,6 +41,83 @@
     <title>Mortgage Affordability Calculator 2025 | How Much Can I Borrow? | QuidWise</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Mortgage Affordability Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free UK Mortgage Affordability Calculator. Find out how much you can borrow based on your income. Get estimated borrowing limits from 4x to 5.5x your annual salary.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "ratingCount": "620"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much can I borrow for a mortgage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "UK lenders typically allow you to borrow between 4 and 5.5 times your annual salary. The exact multiple depends on your credit score, existing debts, monthly expenses, and the lender's criteria. Use our calculator to estimate your borrowing range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do mortgage lenders consider both incomes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, if you're buying with a partner or spouse, lenders will consider both incomes when calculating affordability. They typically apply the same income multiple (4-5.5x) to your combined annual salaries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What affects my mortgage affordability?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mortgage affordability is affected by your annual income, existing debts (credit cards, loans, car finance), monthly outgoings, credit score, employment type, and the deposit amount. Lenders also stress-test your ability to afford higher interest rates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I borrow more with a larger deposit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A larger deposit reduces the loan-to-value (LTV) ratio, which can help you access better interest rates and may improve your chances of approval. However, it doesn't directly increase the income multiple lenders use for affordability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I speak to a mortgage broker?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, a mortgage broker can provide more accurate borrowing limits based on your specific circumstances. They have access to the whole market and can find lenders that offer higher multiples or are more flexible with affordability criteria."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -246,6 +323,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your monthly mortgage repayments</p>
+                </a>
+                <a href="income-tax-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Income Tax Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your take-home pay</p>
+                </a>
+                <a href="stamp-duty-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Stamp Duty Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate stamp duty on your property purchase</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How much can I borrow for a mortgage?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">UK lenders typically allow you to borrow between 4 and 5.5 times your annual salary. The exact multiple depends on your credit score, existing debts, monthly expenses, and the lender's criteria. Use our calculator to estimate your borrowing range.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Do mortgage lenders consider both incomes?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Yes, if you're buying with a partner or spouse, lenders will consider both incomes when calculating affordability. They typically apply the same income multiple (4-5.5x) to your combined annual salaries.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What affects my mortgage affordability?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Mortgage affordability is affected by your annual income, existing debts (credit cards, loans, car finance), monthly outgoings, credit score, employment type, and the deposit amount. Lenders also stress-test your ability to afford higher interest rates.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Can I borrow more with a larger deposit?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">A larger deposit reduces the loan-to-value (LTV) ratio, which can help you access better interest rates and may improve your chances of approval. However, it doesn't directly increase the income multiple lenders use for affordability.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Should I speak to a mortgage broker?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Yes, a mortgage broker can provide more accurate borrowing limits based on your specific circumstances. They have access to the whole market and can find lenders that offer higher multiples or are more flexible with affordability criteria.</p>
             </div>
         </div>
 

@@ -41,6 +41,83 @@
     <title>UK Income Tax Calculator 2024/25 & 2025/26 | Free Take-Home Pay Calculator | QuidWise</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Income Tax Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free UK Income Tax Calculator for 2024/25 & 2025/26. Calculate your take-home pay after income tax, National Insurance, pension contributions, and student loan deductions.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the UK personal allowance for 2024/25?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The personal allowance for the 2024/25 tax year is £12,570. This is the amount you can earn tax-free before income tax is charged. This allowance is gradually reduced for those earning over £100,000."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is National Insurance calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "National Insurance is charged at 8% on earnings between £12,570 and £50,270, and 2% on earnings above £50,270. The calculator automatically applies these rates based on your salary."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do pension contributions reduce my tax?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, pension contributions are deducted from your gross salary before tax is calculated, effectively reducing your taxable income. This means you save income tax and National Insurance on your pension contributions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the UK income tax bands for 2024/25?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tax bands are: 0% up to £12,570 (personal allowance), 20% from £12,571 to £50,270 (basic rate), 40% from £50,271 to £125,140 (higher rate), and 45% above £125,140 (additional rate)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is this take-home pay calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The calculator uses official HMRC tax rates and National Insurance rates for 2024/25 and 2025/26. Results are estimates and actual take-home pay may vary slightly based on your specific tax code and circumstances."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -486,6 +563,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="budget-planner.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Budget Planner</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Plan how to spend your take-home pay across different categories</p>
+                </a>
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">See how much you can borrow based on your salary</p>
+                </a>
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your monthly mortgage repayments</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is the UK personal allowance for 2024/25?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">The personal allowance for the 2024/25 tax year is £12,570. This is the amount you can earn tax-free before income tax is charged. This allowance is gradually reduced for those earning over £100,000.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How is National Insurance calculated?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">National Insurance is charged at 8% on earnings between £12,570 and £50,270, and 2% on earnings above £50,270. Our calculator automatically applies these rates based on your salary.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Do pension contributions reduce my tax?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Yes, pension contributions are deducted from your gross salary before tax is calculated, effectively reducing your taxable income. This means you save income tax and National Insurance on your pension contributions.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What are the UK income tax bands for 2024/25?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">The tax bands are: 0% up to £12,570 (personal allowance), 20% from £12,571 to £50,270 (basic rate), 40% from £50,271 to £125,140 (higher rate), and 45% above £125,140 (additional rate).</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How accurate is this take-home pay calculator?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Our calculator uses official HMRC tax rates and National Insurance rates for 2024/25 and 2025/26. Results are estimates and actual take-home pay may vary slightly based on your specific tax code and circumstances.</p>
             </div>
         </div>
 

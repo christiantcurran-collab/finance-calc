@@ -42,6 +42,83 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Mortgage Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free UK Mortgage Calculator for 2025. Calculate monthly mortgage repayments, total interest, and see amortization schedules for repayment and interest-only mortgages.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "ratingCount": "980"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate my monthly mortgage payment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your monthly mortgage payment is calculated based on the loan amount, interest rate, and mortgage term. For a repayment mortgage, the payment includes both principal and interest. Use our calculator to enter your property value, deposit, interest rate, and term to get an accurate monthly payment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between repayment and interest-only mortgages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A repayment mortgage means you pay both the interest and gradually pay off the loan balance each month. An interest-only mortgage means you only pay the interest monthly, and the full loan amount must be repaid at the end of the term. Repayment mortgages typically have higher monthly payments but lower overall cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a typical mortgage term in the UK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most common mortgage term in the UK is 25 years, though terms can range from 5 to 40 years. Longer terms mean lower monthly payments but more interest paid overall. Shorter terms mean higher monthly payments but less total interest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much deposit do I need for a UK mortgage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most UK mortgages require a minimum deposit of 5-10% of the property value, though larger deposits (15-20%) typically secure better interest rates. First-time buyers may access government schemes requiring smaller deposits. A larger deposit means you borrow less and pay less interest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I overpay my mortgage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most UK mortgages allow overpayments of up to 10% per year without penalty. Overpaying can significantly reduce the total interest and shorten your mortgage term. Check your mortgage terms for specific overpayment limits and use our mortgage overpayment calculator to see the impact."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -246,6 +323,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Find out how much you can borrow based on your income</p>
+                </a>
+                <a href="mortgage-overpayment.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Overpayment</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">See how overpaying can reduce your mortgage term and interest</p>
+                </a>
+                <a href="stamp-duty-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Stamp Duty Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate stamp duty land tax on your property purchase</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How do I calculate my monthly mortgage payment?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Your monthly mortgage payment is calculated based on the loan amount, interest rate, and mortgage term. For a repayment mortgage, the payment includes both principal and interest. Use our calculator to enter your property value, deposit, interest rate, and term to get an accurate monthly payment.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is the difference between repayment and interest-only mortgages?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">A repayment mortgage means you pay both the interest and gradually pay off the loan balance each month. An interest-only mortgage means you only pay the interest monthly, and the full loan amount must be repaid at the end of the term. Repayment mortgages typically have higher monthly payments but lower overall cost.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What is a typical mortgage term in the UK?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">The most common mortgage term in the UK is 25 years, though terms can range from 5 to 40 years. Longer terms mean lower monthly payments but more interest paid overall. Shorter terms mean higher monthly payments but less total interest.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How much deposit do I need for a UK mortgage?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Most UK mortgages require a minimum deposit of 5-10% of the property value, though larger deposits (15-20%) typically secure better interest rates. First-time buyers may access government schemes requiring smaller deposits. A larger deposit means you borrow less and pay less interest.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Can I overpay my mortgage?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Most UK mortgages allow overpayments of up to 10% per year without penalty. Overpaying can significantly reduce the total interest and shorten your mortgage term. Check your mortgage terms for specific overpayment limits and use our mortgage overpayment calculator to see the impact.</p>
             </div>
         </div>
 

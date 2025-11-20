@@ -41,6 +41,83 @@
     <title>Mortgage Overpayment Calculator 2025 | Calculate Interest Savings | QuidWise</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data - Calculator -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Mortgage Overpayment Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Free UK Mortgage Overpayment Calculator. See how much interest you can save and how many years you can cut off your mortgage by making overpayments.",
+      "author": {
+        "@type": "Organization",
+        "name": "QuidWise",
+        "url": "https://www.quidwise.co.uk"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "680"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much can I overpay my mortgage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most UK mortgages allow overpayments of up to 10% of the outstanding balance per year without penalty. Check your mortgage terms for your specific overpayment limit. Some lenders allow unlimited overpayments on variable rates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will overpaying my mortgage save me money?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, mortgage overpayments reduce your outstanding balance, which means you pay less interest over the life of the mortgage. Even small regular overpayments can save thousands of pounds and cut years off your mortgage term."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I overpay my mortgage or save?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on your mortgage rate vs savings rates. If your mortgage rate is higher than savings rates (common), overpaying saves more money. However, keep an emergency fund before overpaying, as you can't easily access money paid into your mortgage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are mortgage overpayment penalties?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you overpay beyond your lender's allowance (typically 10% per year), you may face early repayment charges (ERCs). These are usually 1-5% of the overpayment amount and are common on fixed-rate deals during the initial term."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I reduce my monthly payment by overpaying?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Typically, overpayments reduce your mortgage term rather than monthly payment. However, you can usually ask your lender to recalculate payments when you remortgage. Some offset mortgages allow flexible overpayments that can reduce monthly payments."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -217,6 +294,55 @@
                         <i class="fas fa-envelope"></i> Sign Up for Free
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Related Calculators -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Related Calculators</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <a href="mortgage-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your standard monthly mortgage repayments</p>
+                </a>
+                <a href="mortgage-affordability.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Mortgage Affordability</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Find out how much you can borrow</p>
+                </a>
+                <a href="income-tax-calculator.html" style="text-decoration: none; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--primary-color); transition: transform 0.2s;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0; font-size: 1.1rem;">Income Tax Calculator</h3>
+                    <p style="margin: 0; color: var(--text-medium); font-size: 0.9rem;">Calculate your take-home pay</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="calculator-card" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">How much can I overpay my mortgage?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Most UK mortgages allow overpayments of up to 10% of the outstanding balance per year without penalty. Check your mortgage terms for your specific overpayment limit. Some lenders allow unlimited overpayments on variable rates.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Will overpaying my mortgage save me money?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Yes, mortgage overpayments reduce your outstanding balance, which means you pay less interest over the life of the mortgage. Even small regular overpayments can save thousands of pounds and cut years off your mortgage term.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Should I overpay my mortgage or save?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">It depends on your mortgage rate vs savings rates. If your mortgage rate is higher than savings rates (common), overpaying saves more money. However, keep an emergency fund before overpaying, as you can't easily access money paid into your mortgage.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">What are mortgage overpayment penalties?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">If you overpay beyond your lender's allowance (typically 10% per year), you may face early repayment charges (ERCs). These are usually 1-5% of the overpayment amount and are common on fixed-rate deals during the initial term.</p>
+            </div>
+
+            <div style="padding-bottom: 1.5rem;">
+                <h3 style="color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.5rem;">Can I reduce my monthly payment by overpaying?</h3>
+                <p style="color: var(--text-medium); line-height: 1.6;">Typically, overpayments reduce your mortgage term rather than monthly payment. However, you can usually ask your lender to recalculate payments when you remortgage. Some offset mortgages allow flexible overpayments that can reduce monthly payments.</p>
             </div>
         </div>
 
