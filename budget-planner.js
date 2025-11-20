@@ -6,36 +6,38 @@ let categoryBarChart = null;
 
 // UK National Average Spending Proportions (based on ONS Family Spending data)
 const nationalAveragePercentages = {
-    // HOME (28% total)
-    'homeMortgageRent': 18.0,      // Housing costs
-    'homeCouncilTax': 3.5,          // Council tax
-    'homeGas': 1.5,                 // Gas
-    'homeElectricity': 1.8,         // Electricity
-    'homeWater': 1.2,               // Water
-    'homeInternet': 1.0,            // Internet
+    // HOME (51% total - reflects actual housing cost burden on net income)
+    'homeMortgageRent': 35.0,      // Housing costs (mortgage/rent)
+    'homeGroundRent': 1.0,          // Ground rent/service charge
+    'homeCouncilTax': 4.0,          // Council tax
+    'homeGas': 2.5,                 // Gas
+    'homeElectricity': 3.0,         // Electricity
+    'homeWater': 2.0,               // Water
+    'homeInternet': 1.5,            // Internet
     'homeTVLicense': 0.5,           // TV License
-    'homeMaintenance': 0.5,         // Maintenance
+    'homeMobile': 0.5,              // Mobile
+    'homeMaintenance': 1.0,         // Maintenance
     
-    // INSURANCE (4% total)
-    'insuranceHome': 1.2,           // Home insurance
-    'insuranceLife': 1.5,           // Life insurance
-    'insuranceOther': 1.3,          // Other insurance
+    // INSURANCE (3% total)
+    'insuranceHome': 1.0,           // Home insurance
+    'insuranceLife': 1.2,           // Life insurance
+    'insuranceOther': 0.8,          // Other insurance
     
-    // TRANSPORT (14% total)
-    'transportCarFinance': 3.5,     // Car finance
-    'transportFuel': 3.0,           // Fuel
-    'transportInsurance': 2.5,      // Car insurance
-    'transportPublic': 2.0,         // Public transport
-    'transportParking': 1.0,        // Parking
-    'transportMaintenance': 2.0,    // Maintenance/MOT
+    // TRANSPORT (11% total)
+    'transportCarFinance': 3.0,     // Car finance
+    'transportFuel': 3.5,           // Fuel
+    'transportInsurance': 2.0,      // Car insurance
+    'transportPublic': 1.5,         // Public transport
+    'transportParking': 0.5,        // Parking
+    'transportMaintenance': 0.5,    // Maintenance/MOT
     
     // LOANS (3% total)
     'loanPersonal': 1.5,            // Personal loans
     'loanCreditCard': 1.0,          // Credit cards
     'loanStudentLoan': 0.5,         // Student loan
     
-    // FOOD & DRINK (11% total)
-    'foodGroceries': 8.0,           // Groceries
+    // FOOD & DRINK (12% total)
+    'foodGroceries': 9.0,           // Groceries
     'foodTakeaway': 2.0,            // Takeaway
     'foodDining': 1.0,              // Dining out
     
@@ -44,31 +46,31 @@ const nationalAveragePercentages = {
     'familySchool': 0.5,            // School costs
     'familyPets': 0.5,              // Pet care
     
-    // ENTERTAINMENT (11% total)
+    // ENTERTAINMENT (8% total)
     'entertainmentStreaming': 1.5,  // Streaming services
     'entertainmentGym': 1.0,        // Gym membership
-    'entertainmentHobbies': 3.0,    // Hobbies
-    'entertainmentHolidays': 5.5,   // Holidays
+    'entertainmentHobbies': 2.5,    // Hobbies
+    'entertainmentHolidays': 3.0,   // Holidays
     
     // HEALTH (2% total)
     'healthPrescriptions': 0.5,     // Prescriptions
-    'healthDental': 0.5,            // Dental
-    'healthOptical': 0.3,           // Optical
-    'healthOther': 0.7,             // Other health
+    'healthDental': 0.6,            // Dental
+    'healthOptical': 0.4,           // Optical
+    'healthOther': 0.5,             // Other health
     
-    // CLOTHES (4% total)
-    'clothesAdult': 2.5,            // Adult clothing
-    'clothesChildren': 1.5,         // Children clothing
+    // CLOTHES (3% total)
+    'clothesAdult': 2.0,            // Adult clothing
+    'clothesChildren': 1.0,         // Children clothing
     
     // EDUCATION (1% total)
     'educationCourses': 0.5,        // Courses
     'educationBooks': 0.3,          // Books
     'educationOther': 0.2,          // Other education
     
-    // OTHER (2% total)
-    'otherGifts': 0.8,              // Gifts
-    'otherCharity': 0.5,            // Charity
-    'otherMiscellaneous': 0.7       // Miscellaneous
+    // OTHER (3% total)
+    'otherGifts': 1.2,              // Gifts
+    'otherCharity': 0.8,            // Charity
+    'otherMiscellaneous': 1.0       // Miscellaneous
 };
 
 document.addEventListener('DOMContentLoaded', function() {
