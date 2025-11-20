@@ -98,8 +98,43 @@
   
   <!-- Blog Posts - Latest First -->
   <url>
+    <loc>https://www.quidwise.co.uk/blog-200k-mortgage-repayments.html</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
     <loc>https://www.quidwise.co.uk/blog-sdlt-budget-changes.html</loc>
     <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.quidwise.co.uk/blog-350k-stamp-duty-ftb.html</loc>
+    <lastmod>2025-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.quidwise.co.uk/blog-40k-vs-45k-salary.html</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.quidwise.co.uk/blog-60k-salary-student-loan.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.quidwise.co.uk/blog-35k-salary-take-home.html</loc>
+    <lastmod>2025-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
