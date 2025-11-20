@@ -179,7 +179,7 @@
             }
         }
         
-        /* Premium Download Button */
+        /* Download Button */
         .premium-download-btn {
             background: linear-gradient(135deg, #1a6b5c 0%, #2a8b7c 100%);
             color: white;
@@ -189,7 +189,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -203,13 +203,6 @@
         
         .premium-download-btn i {
             font-size: 1.25rem;
-        }
-        
-        .price-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.95rem;
         }
     </style>
     
@@ -1056,16 +1049,15 @@
                     <canvas id="categoryBarChart"></canvas>
                 </div>
 
-                <!-- Premium Download Button -->
+                <!-- Download Button -->
                 <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: linear-gradient(135deg, rgba(26, 107, 92, 0.05) 0%, rgba(42, 139, 124, 0.05) 100%); border-radius: 12px; border: 2px solid var(--primary-color);">
-                    <h3 style="margin: 0 0 1rem 0; color: var(--primary-color);"><i class="fas fa-crown"></i> Premium Budget Export</h3>
-                    <p style="margin-bottom: 1.5rem; color: var(--text-medium);">Get your budget as a beautifully formatted Excel file with QuidWise branding, colors, and professional layout.</p>
-                    <button id="downloadExcelBtn" class="premium-download-btn" onclick="handlePremiumDownload()">
-                        <i class="fas fa-file-excel"></i>
-                        <span>Download Premium Budget</span>
-                        <span class="price-tag">£2.99</span>
+                    <h3 style="margin: 0 0 1rem 0; color: var(--primary-color);"><i class="fas fa-file-excel"></i> Download Your Budget</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-medium);">Export your budget as a beautifully formatted Excel file with QuidWise branding, colors, and professional layout.</p>
+                    <button id="downloadExcelBtn" class="premium-download-btn" onclick="downloadPremiumExcel(collectBudgetData())">
+                        <i class="fas fa-download"></i>
+                        <span>Download as Excel</span>
                     </button>
-                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-medium);"><i class="fas fa-lock"></i> Secure payment powered by Stripe</p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-medium);"><i class="fas fa-check-circle"></i> Free professional budget export</p>
                 </div>
             </div>
         </div>
