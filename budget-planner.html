@@ -43,6 +43,176 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
+    <style>
+        /* Collapsible Section Styles */
+        .collapsible-section {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            background: linear-gradient(135deg, rgba(26, 107, 92, 0.1) 0%, rgba(42, 139, 124, 0.1) 100%);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: background 0.3s;
+        }
+        
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, rgba(26, 107, 92, 0.15) 0%, rgba(42, 139, 124, 0.15) 100%);
+        }
+        
+        .collapsible-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .collapsible-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+        
+        .collapsible-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .toggle-icon {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.25rem;
+        }
+        
+        .collapsible-content.open {
+            max-height: 3000px;
+            padding: 1.25rem;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Horizontal Input Layout */
+        .budget-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto 120px;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .budget-input-group:last-child {
+            border-bottom: none;
+        }
+        
+        .budget-input-group label {
+            margin: 0;
+            font-weight: 500;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .budget-input-group label i {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            width: 20px;
+        }
+        
+        .budget-input-group .national-average {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            white-space: nowrap;
+        }
+        
+        .budget-input-group .input-with-symbol {
+            position: relative;
+            width: 120px;
+        }
+        
+        .budget-input-group input {
+            width: 100%;
+            padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .budget-input-group .currency-symbol {
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .budget-input-group {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .budget-input-group .national-average {
+                order: 3;
+            }
+            
+            .budget-input-group .input-with-symbol {
+                order: 2;
+                width: 100%;
+            }
+        }
+        
+        /* Premium Download Button */
+        .premium-download-btn {
+            background: linear-gradient(135deg, #1a6b5c 0%, #2a8b7c 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 107, 92, 0.3);
+        }
+        
+        .premium-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26, 107, 92, 0.4);
+        }
+        
+        .premium-download-btn i {
+            font-size: 1.25rem;
+        }
+        
+        .price-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+    </style>
+    
     <!-- Structured Data - Calculator -->
     <script type="application/ld+json">
     {
@@ -234,586 +404,596 @@
                     </div>
                 </div>
 
+                <!-- Expand/Collapse All Controls -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button type="button" onclick="expandAll()" class="calculate-btn" style="flex: 1; background: var(--primary-light);">
+                        <i class="fas fa-plus-circle"></i> Expand All
+                    </button>
+                    <button type="button" onclick="collapseAll()" class="calculate-btn" style="flex: 1; background: var(--primary-light);">
+                        <i class="fas fa-minus-circle"></i> Collapse All
+                    </button>
+                </div>
+
                 <!-- HOME SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-home section-icon"></i>
-                        <h2>Home</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="homeMortgageRent"><i class="fas fa-house-user"></i> Mortgage/Rent</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeMortgageRent" class="expense-input" data-category="Home" data-national-pct="18" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-home collapsible-icon"></i>
+                            <h2>Home</h2>
                         </div>
-                        <span class="national-average" id="avg-homeMortgageRent" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="homeGroundRent"><i class="fas fa-file-invoice-dollar"></i> Ground Rent/Service Charge</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeGroundRent" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="homeMortgageRent"><i class="fas fa-house-user"></i> Mortgage/Rent</label>
+                            <span class="national-average" id="avg-homeMortgageRent" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeMortgageRent" class="expense-input" data-category="Home" data-national-pct="18" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeGroundRent" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeCouncilTax"><i class="fas fa-landmark"></i> Council Tax</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeCouncilTax" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeGroundRent"><i class="fas fa-file-invoice-dollar"></i> Ground Rent/Service Charge</label>
+                            <span class="national-average" id="avg-homeGroundRent" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeGroundRent" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeCouncilTax" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeGas"><i class="fas fa-fire"></i> Gas</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeGas" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeCouncilTax"><i class="fas fa-landmark"></i> Council Tax</label>
+                            <span class="national-average" id="avg-homeCouncilTax" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeCouncilTax" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeGas" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeElectricity"><i class="fas fa-bolt"></i> Electricity</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeElectricity" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeGas"><i class="fas fa-fire"></i> Gas</label>
+                            <span class="national-average" id="avg-homeGas" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeGas" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeElectricity" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeInternet"><i class="fas fa-wifi"></i> Internet</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeInternet" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeElectricity"><i class="fas fa-bolt"></i> Electricity</label>
+                            <span class="national-average" id="avg-homeElectricity" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeElectricity" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeInternet" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeTVLicense"><i class="fas fa-tv"></i> TV License</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeTVLicense" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeInternet"><i class="fas fa-wifi"></i> Internet</label>
+                            <span class="national-average" id="avg-homeInternet" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeInternet" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeTVLicense" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeTVSubs"><i class="fas fa-film"></i> TV Subscriptions</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeTVSubs" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeTVLicense"><i class="fas fa-tv"></i> TV License</label>
+                            <span class="national-average" id="avg-homeTVLicense" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeTVLicense" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeTVSubs" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="homeMobilePhone"><i class="fas fa-mobile-alt"></i> Mobile Phone</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="homeMobilePhone" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="homeTVSubs"><i class="fas fa-film"></i> TV Subscriptions</label>
+                            <span class="national-average" id="avg-homeTVSubs" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeTVSubs" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-homeMobilePhone" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="homeMobilePhone"><i class="fas fa-mobile-alt"></i> Mobile Phone</label>
+                            <span class="national-average" id="avg-homeMobilePhone" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="homeMobilePhone" class="expense-input" data-category="Home" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- INSURANCE SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-shield-alt section-icon"></i>
-                        <h2>Insurance</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="insuranceLife"><i class="fas fa-heartbeat"></i> Life Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insuranceLife" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-shield-alt collapsible-icon"></i>
+                            <h2>Insurance</h2>
                         </div>
-                        <span class="national-average" id="avg-insuranceLife" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="insuranceIncomeProtection"><i class="fas fa-user-shield"></i> Income Protection Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insuranceIncomeProtection" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="insuranceLife"><i class="fas fa-heartbeat"></i> Life Insurance</label>
+                            <span class="national-average" id="avg-insuranceLife" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insuranceLife" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-insuranceIncomeProtection" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="insuranceCriticalIllness"><i class="fas fa-hospital"></i> Critical Illness Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insuranceCriticalIllness" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="insuranceIncomeProtection"><i class="fas fa-user-shield"></i> Income Protection Insurance</label>
+                            <span class="national-average" id="avg-insuranceIncomeProtection" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insuranceIncomeProtection" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-insuranceCriticalIllness" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="insurancePet"><i class="fas fa-paw"></i> Pet Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insurancePet" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="insuranceCriticalIllness"><i class="fas fa-hospital"></i> Critical Illness Insurance</label>
+                            <span class="national-average" id="avg-insuranceCriticalIllness" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insuranceCriticalIllness" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-insurancePet" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="insuranceDental"><i class="fas fa-tooth"></i> Dental Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insuranceDental" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="insurancePet"><i class="fas fa-paw"></i> Pet Insurance</label>
+                            <span class="national-average" id="avg-insurancePet" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insurancePet" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-insuranceDental" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="insuranceOther"><i class="fas fa-ellipsis-h"></i> Other Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="insuranceOther" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="insuranceDental"><i class="fas fa-tooth"></i> Dental Insurance</label>
+                            <span class="national-average" id="avg-insuranceDental" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insuranceDental" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-insuranceOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="insuranceOther"><i class="fas fa-ellipsis-h"></i> Other Insurance</label>
+                            <span class="national-average" id="avg-insuranceOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="insuranceOther" class="expense-input" data-category="Insurance" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- TRANSPORT SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-car section-icon"></i>
-                        <h2>Transport</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="transportCarInsurance"><i class="fas fa-car-crash"></i> Car Insurance</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportCarInsurance" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-car collapsible-icon"></i>
+                            <h2>Transport</h2>
                         </div>
-                        <span class="national-average" id="avg-transportCarInsurance" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="transportCarTax"><i class="fas fa-file-invoice"></i> Car Tax</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportCarTax" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="transportCarInsurance"><i class="fas fa-car-crash"></i> Car Insurance</label>
+                            <span class="national-average" id="avg-transportCarInsurance" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportCarInsurance" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportCarTax" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="transportFuel"><i class="fas fa-gas-pump"></i> Petrol/Diesel</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportFuel" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="transportCarTax"><i class="fas fa-file-invoice"></i> Car Tax</label>
+                            <span class="national-average" id="avg-transportCarTax" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportCarTax" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportFuel" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="transportServicing"><i class="fas fa-wrench"></i> Car Servicing</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportServicing" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="transportFuel"><i class="fas fa-gas-pump"></i> Petrol/Diesel</label>
+                            <span class="national-average" id="avg-transportFuel" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportFuel" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportServicing" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="transportBreakdown"><i class="fas fa-phone-volume"></i> Breakdown/Recovery</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportBreakdown" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="transportServicing"><i class="fas fa-wrench"></i> Car Servicing</label>
+                            <span class="national-average" id="avg-transportServicing" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportServicing" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportBreakdown" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="transportPublic"><i class="fas fa-bus"></i> Public Transport</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportPublic" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="transportBreakdown"><i class="fas fa-phone-volume"></i> Breakdown/Recovery</label>
+                            <span class="national-average" id="avg-transportBreakdown" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportBreakdown" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportPublic" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="transportOther"><i class="fas fa-ellipsis-h"></i> Other Transport</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="transportOther" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="transportPublic"><i class="fas fa-bus"></i> Public Transport</label>
+                            <span class="national-average" id="avg-transportPublic" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportPublic" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-transportOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="transportOther"><i class="fas fa-ellipsis-h"></i> Other Transport</label>
+                            <span class="national-average" id="avg-transportOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="transportOther" class="expense-input" data-category="Transport" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- LOAN REPAYMENTS SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-credit-card section-icon"></i>
-                        <h2>Loan Repayments</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="loanPersonal"><i class="fas fa-money-bill-wave"></i> Personal Loan Repayments</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="loanPersonal" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-credit-card collapsible-icon"></i>
+                            <h2>Loan Repayments</h2>
                         </div>
-                        <span class="national-average" id="avg-loanPersonal" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="loanCar"><i class="fas fa-car"></i> Car Loan Repayments</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="loanCar" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="loanPersonal"><i class="fas fa-money-bill-wave"></i> Personal Loan Repayments</label>
+                            <span class="national-average" id="avg-loanPersonal" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="loanPersonal" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-loanCar" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="loanCreditCard"><i class="fas fa-credit-card"></i> Credit Card Repayments</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="loanCreditCard" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="loanCar"><i class="fas fa-car"></i> Car Loan Repayments</label>
+                            <span class="national-average" id="avg-loanCar" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="loanCar" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-loanCreditCard" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="loanOther"><i class="fas fa-ellipsis-h"></i> Other Loan Repayments</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="loanOther" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="loanCreditCard"><i class="fas fa-credit-card"></i> Credit Card Repayments</label>
+                            <span class="national-average" id="avg-loanCreditCard" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="loanCreditCard" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-loanOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="loanOther"><i class="fas fa-ellipsis-h"></i> Other Loan Repayments</label>
+                            <span class="national-average" id="avg-loanOther" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="loanOther" class="expense-input" data-category="Loan Repayments" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FOOD & DRINK SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-utensils section-icon"></i>
-                        <h2>Food & Drink</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="foodGroceries"><i class="fas fa-shopping-cart"></i> Groceries</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="foodGroceries" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-utensils collapsible-icon"></i>
+                            <h2>Food & Drink</h2>
                         </div>
-                        <span class="national-average" id="avg-foodGroceries" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="foodEatingOut"><i class="fas fa-utensils"></i> Eating Out</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="foodEatingOut" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="foodGroceries"><i class="fas fa-shopping-cart"></i> Groceries</label>
+                            <span class="national-average" id="avg-foodGroceries" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="foodGroceries" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-foodEatingOut" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="foodLunchWork"><i class="fas fa-coffee"></i> Lunch at Work</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="foodLunchWork" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="foodEatingOut"><i class="fas fa-utensils"></i> Eating Out</label>
+                            <span class="national-average" id="avg-foodEatingOut" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="foodEatingOut" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-foodLunchWork" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="foodTakeaways"><i class="fas fa-pizza-slice"></i> Takeaways</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="foodTakeaways" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="foodLunchWork"><i class="fas fa-coffee"></i> Lunch at Work</label>
+                            <span class="national-average" id="avg-foodLunchWork" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="foodLunchWork" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-foodTakeaways" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="foodTakeaways"><i class="fas fa-pizza-slice"></i> Takeaways</label>
+                            <span class="national-average" id="avg-foodTakeaways" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="foodTakeaways" class="expense-input" data-category="Food & Drink" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAMILY SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-users section-icon"></i>
-                        <h2>Family</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="familyChildcare"><i class="fas fa-baby"></i> Childcare</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familyChildcare" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-users collapsible-icon"></i>
+                            <h2>Family</h2>
                         </div>
-                        <span class="national-average" id="avg-familyChildcare" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="familySchoolFees"><i class="fas fa-school"></i> School Fees</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familySchoolFees" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="familyChildcare"><i class="fas fa-baby"></i> Childcare</label>
+                            <span class="national-average" id="avg-familyChildcare" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familyChildcare" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familySchoolFees" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="familyActivities"><i class="fas fa-running"></i> Activities & Clubs</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familyActivities" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="familySchoolFees"><i class="fas fa-school"></i> School Fees</label>
+                            <span class="national-average" id="avg-familySchoolFees" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familySchoolFees" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familyActivities" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="familyMaintenance"><i class="fas fa-hand-holding-usd"></i> Maintenance/Child Support</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familyMaintenance" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="familyActivities"><i class="fas fa-running"></i> Activities & Clubs</label>
+                            <span class="national-average" id="avg-familyActivities" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familyActivities" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familyMaintenance" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="familyPetFood"><i class="fas fa-bone"></i> Pet Food</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familyPetFood" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="familyMaintenance"><i class="fas fa-hand-holding-usd"></i> Maintenance/Child Support</label>
+                            <span class="national-average" id="avg-familyMaintenance" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familyMaintenance" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familyPetFood" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="familyVetBills"><i class="fas fa-stethoscope"></i> Vet Bills</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familyVetBills" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="familyPetFood"><i class="fas fa-bone"></i> Pet Food</label>
+                            <span class="national-average" id="avg-familyPetFood" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familyPetFood" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familyVetBills" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="familySchoolTrips"><i class="fas fa-bus"></i> School Trips</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="familySchoolTrips" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="familyVetBills"><i class="fas fa-stethoscope"></i> Vet Bills</label>
+                            <span class="national-average" id="avg-familyVetBills" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familyVetBills" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-familySchoolTrips" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="familySchoolTrips"><i class="fas fa-bus"></i> School Trips</label>
+                            <span class="national-average" id="avg-familySchoolTrips" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="familySchoolTrips" class="expense-input" data-category="Family" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ENTERTAINMENT SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-gamepad section-icon"></i>
-                        <h2>Entertainment</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="entertainmentCinema"><i class="fas fa-film"></i> Cinema</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentCinema" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-gamepad collapsible-icon"></i>
+                            <h2>Entertainment</h2>
                         </div>
-                        <span class="national-average" id="avg-entertainmentCinema" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="entertainmentDaysOut"><i class="fas fa-map-marked-alt"></i> Days Out</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentDaysOut" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="entertainmentCinema"><i class="fas fa-film"></i> Cinema</label>
+                            <span class="national-average" id="avg-entertainmentCinema" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentCinema" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-entertainmentDaysOut" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="entertainmentHobbies"><i class="fas fa-palette"></i> Hobbies</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentHobbies" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="entertainmentDaysOut"><i class="fas fa-map-marked-alt"></i> Days Out</label>
+                            <span class="national-average" id="avg-entertainmentDaysOut" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentDaysOut" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-entertainmentHobbies" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="entertainmentAppSubs"><i class="fas fa-mobile-alt"></i> App Subscriptions</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentAppSubs" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="entertainmentHobbies"><i class="fas fa-palette"></i> Hobbies</label>
+                            <span class="national-average" id="avg-entertainmentHobbies" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentHobbies" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-entertainmentAppSubs" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="entertainmentSeasonTickets"><i class="fas fa-ticket-alt"></i> Season Tickets</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentSeasonTickets" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="entertainmentAppSubs"><i class="fas fa-mobile-alt"></i> App Subscriptions</label>
+                            <span class="national-average" id="avg-entertainmentAppSubs" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentAppSubs" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-entertainmentSeasonTickets" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="entertainmentGambling"><i class="fas fa-dice"></i> Lottery/Gambling</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="entertainmentGambling" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="entertainmentSeasonTickets"><i class="fas fa-ticket-alt"></i> Season Tickets</label>
+                            <span class="national-average" id="avg-entertainmentSeasonTickets" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentSeasonTickets" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-entertainmentGambling" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="entertainmentGambling"><i class="fas fa-dice"></i> Lottery/Gambling</label>
+                            <span class="national-average" id="avg-entertainmentGambling" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="entertainmentGambling" class="expense-input" data-category="Entertainment" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- HEALTH SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-heartbeat section-icon"></i>
-                        <h2>Health</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="healthFitness"><i class="fas fa-dumbbell"></i> Fitness</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="healthFitness" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-heartbeat collapsible-icon"></i>
+                            <h2>Health</h2>
                         </div>
-                        <span class="national-average" id="avg-healthFitness" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="healthHaircuts"><i class="fas fa-cut"></i> Haircuts</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="healthHaircuts" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="healthFitness"><i class="fas fa-dumbbell"></i> Fitness</label>
+                            <span class="national-average" id="avg-healthFitness" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="healthFitness" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-healthHaircuts" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="healthDentistry"><i class="fas fa-tooth"></i> Dentistry</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="healthDentistry" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="healthHaircuts"><i class="fas fa-cut"></i> Haircuts</label>
+                            <span class="national-average" id="avg-healthHaircuts" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="healthHaircuts" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-healthDentistry" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="healthOpticians"><i class="fas fa-glasses"></i> Opticians</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="healthOpticians" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="healthDentistry"><i class="fas fa-tooth"></i> Dentistry</label>
+                            <span class="national-average" id="avg-healthDentistry" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="healthDentistry" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-healthOpticians" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="healthOpticians"><i class="fas fa-glasses"></i> Opticians</label>
+                            <span class="national-average" id="avg-healthOpticians" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="healthOpticians" class="expense-input" data-category="Health" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- CLOTHES SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-tshirt section-icon"></i>
-                        <h2>Clothes</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="clothesChildren"><i class="fas fa-child"></i> Children's Clothing</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="clothesChildren" class="expense-input" data-category="Clothes" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-tshirt collapsible-icon"></i>
+                            <h2>Clothes</h2>
                         </div>
-                        <span class="national-average" id="avg-clothesChildren" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="clothesWork"><i class="fas fa-briefcase"></i> Work Clothing</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="clothesWork" class="expense-input" data-category="Clothes" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="clothesChildren"><i class="fas fa-child"></i> Children's Clothing</label>
+                            <span class="national-average" id="avg-clothesChildren" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="clothesChildren" class="expense-input" data-category="Clothes" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-clothesWork" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="clothesWork"><i class="fas fa-briefcase"></i> Work Clothing</label>
+                            <span class="national-average" id="avg-clothesWork" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="clothesWork" class="expense-input" data-category="Clothes" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- EDUCATION SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-graduation-cap section-icon"></i>
-                        <h2>Education</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="educationCourses"><i class="fas fa-book"></i> Courses</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="educationCourses" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-graduation-cap collapsible-icon"></i>
+                            <h2>Education</h2>
                         </div>
-                        <span class="national-average" id="avg-educationCourses" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="educationSchoolFees"><i class="fas fa-school"></i> School Fees</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="educationSchoolFees" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="educationCourses"><i class="fas fa-book"></i> Courses</label>
+                            <span class="national-average" id="avg-educationCourses" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="educationCourses" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-educationSchoolFees" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="educationTuition"><i class="fas fa-chalkboard-teacher"></i> Tuition Fees</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="educationTuition" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="educationSchoolFees"><i class="fas fa-school"></i> School Fees</label>
+                            <span class="national-average" id="avg-educationSchoolFees" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="educationSchoolFees" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-educationTuition" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="educationTuition"><i class="fas fa-chalkboard-teacher"></i> Tuition Fees</label>
+                            <span class="national-average" id="avg-educationTuition" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="educationTuition" class="expense-input" data-category="Education" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- OTHER SECTION -->
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-ellipsis-h section-icon"></i>
-                        <h2>Other</h2>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="otherHolidays"><i class="fas fa-plane"></i> Holidays</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="otherHolidays" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" onclick="toggleSection(this)">
+                        <div class="collapsible-header-left">
+                            <i class="fas fa-ellipsis-h collapsible-icon"></i>
+                            <h2>Other</h2>
                         </div>
-                        <span class="national-average" id="avg-otherHolidays" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-
-                    <div class="input-group">
-                        <label for="otherChristmas"><i class="fas fa-gifts"></i> Christmas</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="otherChristmas" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                    <div class="collapsible-content">
+                        <div class="budget-input-group">
+                            <label for="otherHolidays"><i class="fas fa-plane"></i> Holidays</label>
+                            <span class="national-average" id="avg-otherHolidays" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="otherHolidays" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-otherChristmas" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="otherHomeRefurb"><i class="fas fa-hammer"></i> Home Refurbishments</label>
-                        <div class="input-with-symbol">
-                            <span class="currency-symbol">£</span>
-                            <input type="number" id="otherHomeRefurb" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                        <div class="budget-input-group">
+                            <label for="otherChristmas"><i class="fas fa-gifts"></i> Christmas</label>
+                            <span class="national-average" id="avg-otherChristmas" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="otherChristmas" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
                         </div>
-                        <span class="national-average" id="avg-otherHomeRefurb" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                        <div class="budget-input-group">
+                            <label for="otherHomeRefurb"><i class="fas fa-hammer"></i> Home Refurbishments</label>
+                            <span class="national-average" id="avg-otherHomeRefurb" style="display: none;"><i class="fas fa-chart-line"></i> UK avg: £0</span>
+                            <div class="input-with-symbol">
+                                <span class="currency-symbol">£</span>
+                                <input type="number" id="otherHomeRefurb" class="expense-input" data-category="Other" placeholder="0" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -876,10 +1056,17 @@
                     <canvas id="categoryBarChart"></canvas>
                 </div>
 
-                <!-- Download Button -->
-                <button id="downloadExcel" class="calculate-btn" style="margin-top: 2rem;">
-                    <i class="fas fa-download"></i> Download as Excel
-                </button>
+                <!-- Premium Download Button -->
+                <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: linear-gradient(135deg, rgba(26, 107, 92, 0.05) 0%, rgba(42, 139, 124, 0.05) 100%); border-radius: 12px; border: 2px solid var(--primary-color);">
+                    <h3 style="margin: 0 0 1rem 0; color: var(--primary-color);"><i class="fas fa-crown"></i> Premium Budget Export</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-medium);">Get your budget as a beautifully formatted Excel file with QuidWise branding, colors, and professional layout.</p>
+                    <button id="downloadExcelBtn" class="premium-download-btn" onclick="handlePremiumDownload()">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Download Premium Budget</span>
+                        <span class="price-tag">£2.99</span>
+                    </button>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-medium);"><i class="fas fa-lock"></i> Secure payment powered by Stripe</p>
+                </div>
             </div>
         </div>
         <!-- Weekly Email Signup -->
@@ -962,6 +1149,7 @@
     </div>
 
     <script src="navigation.js"></script>
+    <script src="budget-planner-collapsible.js"></script>
     <script src="budget-planner.js"></script>
     <script>
         // Add event listener for footer email signup button
