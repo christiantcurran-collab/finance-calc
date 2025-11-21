@@ -43,17 +43,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Override home-container width for wider layout */
-        .home-container {
-            max-width: 1600px !important;
-            margin: 0 auto;
+        /* Override container widths for full-width layout */
+        .container.home-container {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
         }
         
         /* Center the calculators section with much wider layout */
         .home-tools-grid {
             max-width: 1400px;
             width: 90%;
-            margin: 2rem auto;
+            margin: 2rem auto !important;
             padding: 0;
         }
         
@@ -106,14 +108,23 @@
             font-size: 1.2rem;
         }
         
+        /* Center the blog section to match calculator width */
+        .latest-blog-section {
+            max-width: 1400px;
+            width: 90%;
+            margin: 2rem auto !important;
+        }
+        
         @media (max-width: 1400px) {
-            .home-tools-grid {
+            .home-tools-grid,
+            .latest-blog-section {
                 width: 85%;
             }
         }
         
         @media (max-width: 1200px) {
-            .home-tools-grid {
+            .home-tools-grid,
+            .latest-blog-section {
                 width: 90%;
             }
             
