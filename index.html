@@ -16,8 +16,8 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free UK personal finance calculators and guides. Calculate income tax, mortgage payments, stamp duty, and more. Expert tools to help you make your pay go further.">
-    <meta name="keywords" content="UK tax calculator, mortgage calculator, stamp duty calculator, income tax, personal finance UK, financial planning, money saving tools, ISA calculator, pension calculator">
+    <meta name="description" content="Free UK financial calculators for 2025. Calculate income tax, mortgage payments, stamp duty, mortgage affordability, and budget planning. Expert tools to help you make smart money decisions.">
+    <meta name="keywords" content="UK tax calculator, mortgage calculator, stamp duty calculator, income tax calculator, mortgage affordability calculator, personal finance UK, financial planning, budget planner, money calculator">
     <meta name="author" content="QuidWise">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.quidwise.co.uk/">
@@ -25,8 +25,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.quidwise.co.uk/">
-    <meta property="og:title" content="QuidWise | Free UK Personal Finance Calculators & Tools">
-    <meta property="og:description" content="Free UK personal finance calculators and guides. Calculate income tax, mortgage payments, stamp duty, and more.">
+    <meta property="og:title" content="QuidWise | Free UK Financial Calculators 2025">
+    <meta property="og:description" content="Free UK calculators for income tax, mortgages, stamp duty, and budgeting. Make informed financial decisions with our easy-to-use tools.">
     <meta property="og:image" content="https://www.quidwise.co.uk/logo.svg">
     <meta property="og:site_name" content="QuidWise">
     <meta property="og:locale" content="en_GB">
@@ -34,13 +34,61 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.quidwise.co.uk/">
-    <meta name="twitter:title" content="QuidWise | Free UK Personal Finance Calculators & Tools">
-    <meta name="twitter:description" content="Free UK personal finance calculators and guides. Calculate income tax, mortgage payments, stamp duty, and more.">
+    <meta name="twitter:title" content="QuidWise | Free UK Financial Calculators 2025">
+    <meta name="twitter:description" content="Calculate income tax, mortgage payments, stamp duty, and more. Free UK financial calculators for smart money decisions.">
     <meta name="twitter:image" content="https://www.quidwise.co.uk/logo.svg">
     
-    <title>QuidWise | Free UK Personal Finance Calculators & Tools</title>
+    <title>QuidWise | Free UK Financial Calculators 2025 - Tax, Mortgage & Budget Tools</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Center the calculators section */
+        .home-tools-grid {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        .home-section {
+            width: 100%;
+        }
+        
+        .home-hero {
+            text-align: center;
+            margin: 2rem auto 1rem;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        
+        .home-hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .home-hero p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .home-tools-grid {
+                max-width: 100%;
+                margin: 1rem auto;
+            }
+            
+            .home-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .home-hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
     
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
@@ -49,7 +97,7 @@
       "@type": "WebSite",
       "name": "QuidWise",
       "url": "https://www.quidwise.co.uk",
-      "description": "Free UK personal finance calculators and guides",
+      "description": "Free UK financial calculators for income tax, mortgages, stamp duty, and budget planning",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.quidwise.co.uk/?s={search_term_string}",
@@ -70,7 +118,7 @@
         "width": "200",
         "height": "60"
       },
-      "description": "Free UK personal finance calculators and tools. Calculate income tax, mortgage payments, stamp duty, budget planning and more.",
+      "description": "Free UK financial calculators for income tax, mortgage calculations, stamp duty, mortgage affordability, budget planning and more. Easy-to-use tools for smart money decisions.",
       "foundingDate": "2025",
       "areaServed": {
         "@type": "Country",
@@ -84,14 +132,16 @@
         "availableLanguage": "English"
       },
       "knowsAbout": [
-        "UK Income Tax",
-        "Mortgage Calculations",
-        "Stamp Duty",
-        "Budget Planning",
-        "Personal Finance",
-        "Financial Planning",
-        "Tax Calculators",
-        "Mortgage Affordability"
+        "UK Income Tax Calculator",
+        "Mortgage Calculator",
+        "Stamp Duty Calculator",
+        "Budget Planning Tools",
+        "Mortgage Affordability Calculator",
+        "Personal Finance Calculators",
+        "Tax Calculations UK",
+        "Mortgage Overpayment Calculator",
+        "Buy vs Rent Calculator",
+        "Financial Planning Tools"
       ]
     }
     </script>
@@ -153,11 +203,17 @@
     </nav>
 
     <div class="container home-container">
+        <!-- Main Heading -->
+        <div class="home-hero">
+            <h1>Free UK Financial Calculators</h1>
+            <p>Plan your finances with our easy-to-use calculators. Work out your income tax, mortgage payments, stamp duty, and budget planning in seconds.</p>
+        </div>
+
         <!-- Main Tools Grid -->
         <div class="home-tools-grid">
             <!-- Calculators Section -->
             <div class="home-section">
-                <h2 class="section-title"><i class="fas fa-calculator"></i> Calculators</h2>
+                <h2 class="section-title"><i class="fas fa-calculator"></i> Our Calculators</h2>
                 <ul class="compact-tool-list">
                     <li><a href="income-tax-calculator.html"><i class="fas fa-chevron-right"></i> Income Tax Calculator</a></li>
                     <li><a href="budget-planner.html"><i class="fas fa-chevron-right"></i> Budget Planner</a></li>
