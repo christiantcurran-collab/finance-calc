@@ -1,6 +1,24 @@
 // Stamp Duty Calculator JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Handle URL parameters for pre-filling calculator
+    const urlParams = new URLSearchParams(window.location.search);
+    const priceParam = urlParams.get('price') || urlParams.get('property') || urlParams.get('amount');
+
+    if (priceParam) {
+        const propertyPriceInput = document.getElementById('propertyPrice');
+        const numericPrice = parseFloat(priceParam.replace(/[^0-9.]/g, ''));
+
+        if (numericPrice && numericPrice > 0) {
+            propertyPriceInput.value = numericPrice;
+
+            // Auto-calculate if property price is provided
+            setTimeout(() => {
+                form.dispatchEvent(new Event('submit'));
+            }, 500);
+        }
+    }
+
     const form = document.getElementById('stampDutyForm');
     const resultsSection = document.getElementById('results');
     const locationSelect = document.getElementById('location');

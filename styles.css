@@ -1003,6 +1003,217 @@ input[type="number"]:focus {
     }
 }
 
+/* Stamp Duty Calculator Page Styles */
+.stamp-duty-summary {
+    margin-bottom: 2rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--bg-light);
+}
+
+.summary-item.total {
+    border-bottom: none;
+    border-top: 2px solid var(--primary-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-weight: 600;
+}
+
+.summary-item .label {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.summary-item .value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.summary-item .value.price {
+    color: var(--primary-color);
+}
+
+.summary-item .value.tax {
+    color: #e74c3c;
+}
+
+.summary-item .value.total-cost {
+    color: #27ae60;
+    font-size: 1.3rem;
+}
+
+.band-breakdown h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.bands-table {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.band-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.8fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--bg-light);
+    align-items: center;
+}
+
+.band-row:last-child {
+    border-bottom: none;
+}
+
+.band-row:nth-child(even) {
+    background: var(--bg-light);
+}
+
+.band-label {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.band-amount,
+.band-tax {
+    text-align: right;
+    font-weight: 600;
+}
+
+.band-rate {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.stamp-duty-options h4 {
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.option-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.option-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.option-link:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+/* Popular Property Prices */
+.popular-properties {
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.popular-properties h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.popular-properties > p {
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.property-link {
+    display: block;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.property-link:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.property-price {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.property-duty {
+    display: block;
+    font-size: 0.9rem;
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.property-note {
+    color: var(--text-medium);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .band-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .property-link {
+        padding: 0.75rem;
+    }
+
+    .property-price {
+        font-size: 1.1rem;
+    }
+
+    .option-links {
+        flex-direction: column;
+    }
+}
+
 /* Popular Salary Links */
 .popular-salaries {
     background: var(--bg-light);
