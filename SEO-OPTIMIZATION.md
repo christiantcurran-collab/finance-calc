@@ -9,14 +9,16 @@
 - Includes crawl delay to prevent server overload
 
 ### 2. **sitemap.xml** ✓
-- Comprehensive XML sitemap with all pages
+- Comprehensive XML sitemap with all pages (219 total pages)
 - Priority levels set appropriately:
   - Homepage: 1.0 (highest)
   - Main calculators: 0.9
   - Secondary tools: 0.8
+  - Pre-filled calculator pages: 0.6
   - Blog posts: 0.7
 - Change frequencies defined for each page type
 - Last modified dates included
+- ✅ **Recently Updated**: Added 184 new pre-filled calculator pages (101 income tax, 83 stamp duty) and 3 new salary blog posts
 
 ### 3. **Meta Tags & SEO Fundamentals** ✓
 - **Title Tags**: Optimized with keywords and brand name
@@ -270,6 +272,6 @@ Your site now has:
 
 ---
 
-**Last Updated**: December 2024
-**Version**: 1.0
+**Last Updated**: November 2025
+**Version**: 1.1
 
