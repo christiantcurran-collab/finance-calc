@@ -395,6 +395,24 @@ function displayResults(results, isAnnual, hasPension, hasChildcareVouchers, has
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
+    // Handle URL parameters for pre-filling calculator
+    const urlParams = new URLSearchParams(window.location.search);
+    const salaryParam = urlParams.get('salary') || urlParams.get('amount');
+
+    if (salaryParam) {
+        const salaryInput = document.getElementById('salary');
+        const numericSalary = parseFloat(salaryParam.replace(/[^0-9.]/g, ''));
+
+        if (numericSalary && numericSalary > 0) {
+            salaryInput.value = numericSalary;
+
+            // Auto-calculate if salary is provided
+            setTimeout(() => {
+                form.dispatchEvent(new Event('submit'));
+            }, 500);
+        }
+    }
+
     const form = document.getElementById('salaryForm');
     const hasPensionCheckbox = document.getElementById('hasPension');
     const pensionInputs = document.getElementById('pensionInputs');
