@@ -425,6 +425,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const studentLoanInfo = document.getElementById('studentLoanInfo');
     const studentLoanText = document.getElementById('studentLoanText');
     
+    // Toggle Scotland location and update label
+    const scotlandCheckbox = document.getElementById('isScotland');
+    const scotlandToggleText = document.getElementById('scotlandToggleText');
+    if (scotlandCheckbox && scotlandToggleText) {
+        scotlandCheckbox.addEventListener('change', function() {
+            scotlandToggleText.textContent = this.checked ? 'Scotland' : 'England';
+        });
+    }
+    
     // Toggle pension inputs and update label
     const pensionToggleText = document.getElementById('pensionToggleText');
     hasPensionCheckbox.addEventListener('change', function() {

@@ -2814,6 +2814,46 @@ input[type="number"]:focus {
    Compact Options Grid - Income Tax Calculator
    ======================================== */
 
+/* Settings Row - Scotland, Tax Year, Age Group */
+.settings-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0 1.25rem 0;
+    padding: 0.875rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.setting-item .option-label {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.setting-item .select-input.compact {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    height: 34px;
+}
+
+.setting-item .toggle-row {
+    height: 34px;
+    align-items: center;
+}
+
+.setting-item .toggle-label-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
 .options-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -3009,6 +3049,15 @@ input[type="number"]:focus {
 
 /* Mobile Responsive for Options Grid */
 @media (max-width: 600px) {
+    .settings-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    
+    .settings-row .setting-item:first-child {
+        grid-column: 1 / -1;
+    }
+    
     .options-grid {
         grid-template-columns: 1fr;
         gap: 0.75rem;
@@ -3033,6 +3082,16 @@ input[type="number"]:focus {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .settings-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .settings-row .setting-item:first-child {
+        grid-column: auto;
     }
 }
 

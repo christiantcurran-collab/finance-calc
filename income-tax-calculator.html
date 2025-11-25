@@ -205,38 +205,46 @@
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="isScotland" name="isScotland">
-                            <span><i class="fas fa-map-marker-alt"></i> I live in Scotland</span>
-                        </label>
-                        <p class="help-text">Scottish residents pay different income tax rates</p>
+                    <!-- Settings Row: Scotland, Tax Year, Age Group -->
+                    <div class="settings-row">
+                        <div class="setting-item">
+                            <label class="option-label">
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </label>
+                            <div class="toggle-row">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="isScotland" name="isScotland">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="toggle-label-text" id="scotlandToggleText">England</span>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <label for="taxYear" class="option-label">
+                                <i class="fas fa-calendar-alt"></i> Tax Year
+                            </label>
+                            <select id="taxYear" name="taxYear" class="select-input compact">
+                                <option value="2024/25">2024/25</option>
+                                <option value="2025/26" selected>2025/26</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item">
+                            <label for="ageGroup" class="option-label">
+                                <i class="fas fa-user"></i> Age
+                            </label>
+                            <select id="ageGroup" name="ageGroup" class="select-input compact">
+                                <option value="under66" selected>Under 66</option>
+                                <option value="66-74">66-74</option>
+                                <option value="over74">Over 74</option>
+                            </select>
+                        </div>
                     </div>
 
                     <button type="submit" class="calculate-btn">
                         <i class="fas fa-calculator"></i> Calculate Take-Home Pay
                     </button>
-
-                    <div class="input-group">
-                        <label for="taxYear">
-                            <i class="fas fa-calendar-alt"></i> Tax Year
-                        </label>
-                        <select id="taxYear" name="taxYear" class="select-input">
-                            <option value="2024/25">2024/25</option>
-                            <option value="2025/26" selected>2025/26</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="ageGroup">
-                            <i class="fas fa-user"></i> Age Group
-                        </label>
-                        <select id="ageGroup" name="ageGroup" class="select-input">
-                            <option value="under66" selected>Under 66 (Pay NI)</option>
-                            <option value="66-74">66-74 (No NI)</option>
-                            <option value="over74">Over 74 (No NI)</option>
-                        </select>
-                    </div>
                 </div>
 
                 <!-- Additional Options Section - Compact Grid -->
