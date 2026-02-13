@@ -135,10 +135,6 @@ def generate_page_content(property_price, calculations):
       gtag('config', 'G-W8KXMNYDCS');
     </script>
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9869727060387652"
-     crossorigin="anonymous"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{meta_description}">
@@ -328,19 +324,6 @@ def generate_page_content(property_price, calculations):
                     </a>
                 </div>
             </div>
-        </div>
-
-        <!-- Google AdSense -->
-        <div style="margin-top: 2rem; text-align: center;">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-5i+ch-c-7y+nr"
-                 data-ad-client="ca-pub-9869727060387652"
-                 data-ad-slot="1458643248"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({{}});
-            </script>
         </div>
 
         <footer>

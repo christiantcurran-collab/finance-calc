@@ -64,10 +64,20 @@ def calculate_net_pay(salary, tax_year='2025/26', has_pension=False, pension_per
         'weekly': round(net_pay / 52, 2)
     }
 
+def get_salary_short(salary):
+    """Generate a short salary label like '30k' or '20.25k'"""
+    thousands = salary / 1000
+    if thousands == int(thousands):
+        return f"{int(thousands)}k"
+    else:
+        # Format like 20.25k, 20.5k, 20.75k
+        formatted = f"{thousands:.2f}".rstrip('0').rstrip('.')
+        return f"{formatted}k"
+
 def get_seo_keywords(salary):
     """Generate SEO keywords for a specific salary amount"""
     salary_str = str(salary)
-    salary_short = salary_str[:-3] + 'k'  # e.g., 30000 -> 30k
+    salary_short = get_salary_short(salary)
 
     keywords = [
         f"{salary_short} take home pay",
@@ -98,7 +108,7 @@ def generate_page_content(salary_amount, calculations):
     """Generate the HTML content for a specific income tax calculator page"""
 
     salary_str = str(salary_amount)
-    salary_short = salary_str[:-3] + 'k'
+    salary_short = get_salary_short(salary_amount)
 
     keywords = get_seo_keywords(salary_amount)
 
@@ -119,10 +129,6 @@ def generate_page_content(salary_amount, calculations):
       gtag('js', new Date());
       gtag('config', 'G-W8KXMNYDCS');
     </script>
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9869727060387652"
-     crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -303,19 +309,6 @@ def generate_page_content(salary_amount, calculations):
             </div>
         </div>
 
-        <!-- Google AdSense -->
-        <div style="margin-top: 2rem; text-align: center;">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-5i+ch-c-7y+nr"
-                 data-ad-client="ca-pub-9869727060387652"
-                 data-ad-slot="1458643248"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({{}});
-            </script>
-        </div>
-
         <footer>
             <div class="footer-content">
                 <p class="disclaimer">
@@ -357,9 +350,9 @@ def main():
     output_dir = "income-tax-calculator"
     os.makedirs(output_dir, exist_ok=True)
 
-    # Generate salary amounts from 20000 to 70000 in £500 intervals
+    # Generate salary amounts from 20000 to 70000 in £250 intervals
     salaries = []
-    for amount in range(20000, 70001, 500):
+    for amount in range(20000, 70001, 250):
         salaries.append(amount)
 
     # Regenerate each page

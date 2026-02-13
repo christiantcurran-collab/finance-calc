@@ -12,7 +12,8 @@ def generate_sitemap_entries():
     entries = []
 
     # Income Tax Calculator Pages (priority 0.6, changefreq monthly)
-    for amount in range(20000, 70001, 500):
+    # £250 increments from £20,000 to £70,000
+    for amount in range(20000, 70001, 250):
         entries.append({
             'url': f'https://www.quidwise.co.uk/income-tax-calculator/{amount}.html',
             'lastmod': '2025-11-24',
@@ -129,6 +130,76 @@ def generate_sitemap_xml():
     <lastmod>2025-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Allowable Expenses Guide -->
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Expense Category Pages -->
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/office-supplies.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/travel.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/working-from-home.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/professional-services.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/marketing.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/clothing.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/training.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/staff.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/stock-materials.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quidwise.co.uk/expenses/financial.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Comparison Pages -->
